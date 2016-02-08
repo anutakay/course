@@ -39,6 +39,11 @@ public class Complex {
         return result;
     }
 
+    public Complex sub(Complex other) {
+        Complex result = new Complex(this.real - other.real, this.image - other.image);
+        return result;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
