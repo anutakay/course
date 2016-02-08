@@ -5,12 +5,14 @@ package javalearn;
  */
 public class Complex {
 
-    public void setReal(double real) {
+    private double real;
 
+    public void setReal(double real) {
+        this.real = real;
     }
 
     public double getReal() {
-        return 0;
+        return real;
     }
 
     public  void setImage(double real) {
