@@ -1,5 +1,7 @@
 package javalearn;
 
+import java.util.Locale;
+
 /**
  * Created by anutakay@gmail.com on 08.02.2016.
  */
@@ -70,6 +72,13 @@ public class Complex {
         result = (int) (temp ^ (temp >>> 32));
         temp = Double.doubleToLongBits(image);
         result = 31 * result + (int) (temp ^ (temp >>> 32));
+        return result;
+    }
+
+    @Override
+    public String toString() {
+        char sign = (image < 0) ? '-' : '+';
+        String result = String.format(Locale.ENGLISH, "%.1f%c%.1fi", real, sign, Math.abs(image));
         return result;
     }
 }

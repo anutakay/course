@@ -120,7 +120,6 @@ public class JavaLearn {
      */
     public static void main(String[] args) {
 
-        System.out.println("test");
         /// Порядок выполнения тестов имеет следующий вид:
         
         /// Определям что необходимый нам класс создан
