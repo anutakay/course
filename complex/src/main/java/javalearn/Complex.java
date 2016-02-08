@@ -9,6 +9,15 @@ public class Complex {
 
     private double image;
 
+    public Complex() {
+
+    }
+
+    public Complex(double real, double image) {
+        this.real = real;
+        this.image = image;
+    }
+
     public void setReal(double real) {
         this.real = real;
     }
