@@ -35,11 +35,17 @@ public class Complex {
     }
 
     public Complex add(Complex other) {
+        if(other == null) {
+            other = new Complex(0, 0);
+        }
         Complex result = new Complex(this.real + other.real, this.image + other.image);
         return result;
     }
 
     public Complex sub(Complex other) {
+        if(other == null) {
+            other = new Complex(0, 0);
+        }
         Complex result = new Complex(this.real - other.real, this.image - other.image);
         return result;
     }
