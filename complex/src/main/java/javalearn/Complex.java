@@ -7,9 +7,9 @@ import java.util.Locale;
  */
 public class Complex {
 
-    private double real;
+    private double real = 0;
 
-    private double image;
+    private double image = 0;
 
     public Complex() {
 
@@ -38,7 +38,7 @@ public class Complex {
 
     public Complex add(Complex other) {
         if(other == null) {
-            other = new Complex(0, 0);
+            other = new Complex();
         }
         Complex result = new Complex(this.real + other.real, this.image + other.image);
         return result;
