@@ -1,6 +1,6 @@
 package ru.anutakay;
 
-import ru.anutakay.exception.DoorStatusException;
+import ru.anutakay.exception.*;
 
 public class Fridge extends BoxImpl implements Openable, Named {
 
@@ -11,7 +11,7 @@ public class Fridge extends BoxImpl implements Openable, Named {
     }
 
     @Override
-    public void open() {
+    public void open() throws DoorStatusException {
         if (isOpened()) {
             throw new DoorStatusException();
         }
@@ -19,7 +19,7 @@ public class Fridge extends BoxImpl implements Openable, Named {
     }
 
     @Override
-    public void close() {
+    public void close() throws DoorStatusException {
         if (!isOpened()) {
             throw new DoorStatusException();
         }
@@ -32,17 +32,19 @@ public class Fridge extends BoxImpl implements Openable, Named {
     }
 
     @Override
-    public void put(Freezable object) {
+    public void put(Freezable object) throws BasicException {
         if (!isOpened()) {
-            throw new DoorStatusException();
+            BasicException e = new DoorStatusException();
+            throw e;
         }
         super.put(object);
     }
 
     @Override
-    public boolean isFull() {
+    public boolean isFull() throws BasicException {
         if (!isOpened()) {
-            throw new DoorStatusException();
+            BasicException e = new DoorStatusException();
+            throw e;
         }
         return super.isFull();
     }

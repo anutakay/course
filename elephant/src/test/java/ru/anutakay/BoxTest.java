@@ -32,7 +32,7 @@ public class BoxTest {
     }
 
     @Test
-    public void putGetTest() {
+    public void putGetTest() throws BasicException {
         Box box = new BoxImpl(2, 2, 2, 2);
         Freezable elephant = new FreezableImpl(new Size(2, 2, 2), new Weight(2));
         box.put(elephant);
@@ -41,21 +41,21 @@ public class BoxTest {
     }
 
     @Test(expected = SizeException.class)
-    public void bigSizeTest() {
+    public void bigSizeTest() throws BasicException {
         Box box = new BoxImpl(2, 2, 2, 2);
         Freezable elephant = new FreezableImpl(new Size(3, 3, 3), new Weight(2));
         box.put(elephant);
     }
 
     @Test(expected = WeightException.class)
-    public void bigWeightTest() {
+    public void bigWeightTest() throws BasicException {
         Box box = new BoxImpl(2, 2, 2, 2);
         Freezable elephant = new FreezableImpl(new Size(2, 2, 2), new Weight(3));
         box.put(elephant);
     }
 
     @Test
-    public void fullTest() {
+    public void fullTest() throws BasicException {
         Box box = new BoxImpl(2, 2, 2, 2);
         Freezable elephant = new FreezableImpl(new Size(2, 2, 2), new Weight(2));
         assertFalse(box.isFull());
@@ -85,7 +85,7 @@ public class BoxTest {
     }
 
     @Test(expected = FullException.class)
-    public void notPutTest() {
+    public void notPutTest() throws BasicException {
         Box box = new BoxImpl(2, 2, 2, 2);
         Freezable elephant = new FreezableImpl(new Size(2, 2, 2), new Weight(2));
         box.put(elephant);
@@ -93,13 +93,13 @@ public class BoxTest {
     }
 
     @Test(expected = EmptyException.class)
-    public void notGetTest() {
+    public void notGetTest() throws BasicException {
         Box box = new BoxImpl(2, 2, 2, 2);
         box.get();
     }
 
     @Test(expected = EmptyException.class)
-    public void notGet1Test() {
+    public void notGet1Test() throws BasicException {
         Box box = new BoxImpl(2, 2, 2, 2);
         Freezable elephant = new FreezableImpl(new Size(2, 2, 2), new Weight(2));
         box.put(elephant);

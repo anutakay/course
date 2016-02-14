@@ -1,10 +1,12 @@
 package ru.anutakay;
 
+import ru.anutakay.exception.DoorStatusException;
+
 public interface Openable {
 
-    void open();
+    void open() throws DoorStatusException;
 
-    void close();
+    void close() throws DoorStatusException;
 
     boolean isOpened();
 }

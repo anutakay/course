@@ -1,9 +1,6 @@
 package ru.anutakay;
 
-import ru.anutakay.exception.EmptyException;
-import ru.anutakay.exception.FullException;
-import ru.anutakay.exception.SizeException;
-import ru.anutakay.exception.WeightException;
+import ru.anutakay.exception.*;
 
 public class BoxImpl implements Box {
 
@@ -19,7 +16,7 @@ public class BoxImpl implements Box {
     }
 
     @Override
-    public void put(Freezable object) {
+    public void put(Freezable object) throws BasicException {
         if (object == null) {
             throw new NullPointerException();
         }
@@ -36,9 +33,10 @@ public class BoxImpl implements Box {
     }
 
     @Override
-    public Freezable get() {
+    public Freezable get() throws BasicException {
         if (!isFull()) {
-            throw new EmptyException();
+            BasicException e = new EmptyException();
+            throw e;
         }
         Freezable result = object;
         this.object = null;
@@ -59,7 +57,7 @@ public class BoxImpl implements Box {
     }
 
     @Override
-    public boolean isFull() {
+    public boolean isFull() throws BasicException {
         if (object == null) {
             return false;
         } else {

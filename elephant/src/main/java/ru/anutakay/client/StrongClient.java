@@ -2,11 +2,12 @@ package ru.anutakay.client;
 
 import ru.anutakay.FreezableImpl;
 import ru.anutakay.Fridge;
+import ru.anutakay.exception.*;
 
 public class StrongClient implements Client {
 
     @Override
-    public boolean putToFridge(Fridge fridge, FreezableImpl object) {
+    public boolean putToFridge(Fridge fridge, FreezableImpl object) throws BasicException {
         System.out.println(fridge.getName() + " открыт?");
         boolean isOpen = fridge.isOpened();
         if (isOpen) {

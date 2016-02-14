@@ -1,6 +1,7 @@
 package ru.anutakay;
 
 import org.junit.Test;
+import ru.anutakay.exception.BasicException;
 import ru.anutakay.exception.DoorStatusException;
 
 import static org.junit.Assert.assertFalse;
@@ -12,7 +13,7 @@ import static org.junit.Assert.assertTrue;
 public class FridgeTest {
 
     @Test
-    public void openCloseTest() {
+    public void openCloseTest() throws DoorStatusException {
         Fridge fridge = new Fridge(2, 2, 2, 2);
         fridge.open();
         assertTrue(fridge.isOpened());
@@ -21,13 +22,13 @@ public class FridgeTest {
     }
 
     @Test(expected = DoorStatusException.class)
-    public void noCloseTest() {
+    public void noCloseTest() throws DoorStatusException {
         Fridge fridge = new Fridge(2, 2, 2, 2);
         fridge.close();
     }
 
     @Test(expected = DoorStatusException.class)
-    public void noClose1Test() {
+    public void noClose1Test() throws DoorStatusException {
         Fridge fridge1 = new Fridge(2, 2, 2, 2);
         fridge1.open();
         fridge1.close();
@@ -35,14 +36,14 @@ public class FridgeTest {
     }
 
     @Test(expected = DoorStatusException.class)
-    public void noOpenTest() {
+    public void noOpenTest() throws DoorStatusException {
         Fridge fridge = new Fridge(2, 2, 2, 2);
         fridge.open();
         fridge.open();
     }
 
     @Test(expected = DoorStatusException.class)
-    public void noPutDoor() {
+    public void noPutDoor() throws BasicException {
         Fridge fridge = new Fridge(2, 2, 2, 2);
         FreezableImpl elephant = new FreezableImpl(new Size(2, 2, 2), new Weight(2));
         //fridge.open();
