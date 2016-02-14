@@ -23,6 +23,10 @@ public class Size implements BaseSize {
         this.weight = weight;
     }
 
+    public Size(int length, int width, int height, int weight) {
+        this(length, width, height, new Weight(weight));
+    }
+
     @Override
     public boolean greaterThan(BaseSize size) {
         if(size.getClass() != Size.class) {
