@@ -45,7 +45,7 @@ public class FridgeTest {
     public void noPutDoor() {
         Fridge fridge = new Fridge(2, 2, 2, 2);
         FreezableImpl elephant = new FreezableImpl(new Size(2, 2, 2), new Weight(2));
-        fridge.open();
+        //fridge.open();
         fridge.put(elephant);
     }
 }
