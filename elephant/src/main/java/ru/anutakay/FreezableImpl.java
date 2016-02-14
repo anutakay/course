@@ -4,14 +4,11 @@ public class FreezableImpl implements Freezable, Named {
 
     private Size size;
 
-    private Weight weight;
-
-    public FreezableImpl(Size size, Weight weight) {
-        if (size == null || weight == null) {
+    public FreezableImpl(Size size) {
+        if (size == null) {
             throw new NullPointerException();
         }
         this.size = size;
-        this.weight = weight;
     }
 
     @Override
@@ -20,13 +17,8 @@ public class FreezableImpl implements Freezable, Named {
     }
 
     @Override
-    public Weight getWeight() {
-        return weight;
-    }
-
-    @Override
     public String toString() {
-        return this.getName() + ": " + size.toString() + ", " + weight.toString();
+        return this.getName() + ": " + size.toString();
     }
 
     @Override

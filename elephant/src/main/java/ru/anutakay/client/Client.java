@@ -5,5 +5,5 @@ import ru.anutakay.Fridge;
 import ru.anutakay.exception.*;
 
 public interface Client {
-    public boolean putToFridge(Fridge fridge, FreezableImpl object) throws DoorStatusException, EmptyException, FullException, SizeException, WeightException, BasicException;
+    boolean putToFridge(Fridge fridge, FreezableImpl object) throws BasicException;
 }

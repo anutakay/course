@@ -4,6 +4,4 @@ public interface Freezable {
 
     Size getSize();
 
-    Weight getWeight();
-
 }

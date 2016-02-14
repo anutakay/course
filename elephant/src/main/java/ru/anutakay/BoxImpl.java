@@ -6,13 +6,10 @@ public class BoxImpl implements Box {
 
     protected Size size;
 
-    protected Weight weight;
-
     private Freezable object;
 
-    public BoxImpl(int length, int width, int height, int weight) {
-        this.size = new Size(length, width, height);
-        this.weight = new Weight(weight);
+    public BoxImpl(Size size) {
+        this.size = size;
     }
 
     @Override
@@ -25,9 +22,6 @@ public class BoxImpl implements Box {
         }
         if (object.getSize().greaterThan(size)) {
             throw new SizeException();
-        }
-        if (object.getWeight().greaterThan(weight)) {
-            throw new WeightException();
         }
         this.object = object;
     }
@@ -46,11 +40,7 @@ public class BoxImpl implements Box {
     @Override
     public boolean isFits(Freezable object) {
         Size tmpSize = object.getSize();
-        Weight tmpWeight = object.getWeight();
         if (tmpSize.greaterThan(size)) {
-            return false;
-        }
-        if (tmpWeight.greaterThan(weight)) {
             return false;
         }
         return true;

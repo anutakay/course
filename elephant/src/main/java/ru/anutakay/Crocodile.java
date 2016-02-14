@@ -2,8 +2,8 @@ package ru.anutakay;
 
 public class Crocodile extends FreezableImpl {
 
-    public Crocodile(Size size, Weight weight) {
-        super(size, weight);
+    public Crocodile(Size size) {
+        super(size);
     }
 
     @Override

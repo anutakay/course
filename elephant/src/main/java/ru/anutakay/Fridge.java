@@ -6,8 +6,8 @@ public class Fridge extends BoxImpl implements Openable, Named {
 
     public boolean isOpened = false;
 
-    public Fridge(int length, int width, int height, int weight) {
-        super(length, width, height, weight);
+    public Fridge(Size size) {
+        super(size);
     }
 
     @Override
@@ -51,7 +51,7 @@ public class Fridge extends BoxImpl implements Openable, Named {
 
     @Override
     public String toString() {
-        return this.getName() + ": " + size.toString() + ", " + weight.toString();
+        return this.getName() + ": " + size.toString();
     }
 
     @Override
