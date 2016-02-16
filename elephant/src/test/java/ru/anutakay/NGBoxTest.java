@@ -16,10 +16,6 @@ public class NGBoxTest {
     Size smallSize;
     Size mediumSize;
     Size bigSize;
-    Size bigHeight;
-    Size bigWidth;
-    Size bigLength;
-    Size bigWeight;
 
     Box emptyBox;
     Box fullBox;
@@ -31,10 +27,6 @@ public class NGBoxTest {
         smallSize = new Size(10, 10, 10, 10);
         mediumSize = new Size(20, 20, 20, 20);
         bigSize = new Size(100, 100, 100, 100);
-        bigHeight = new Size(20, 20, 100, 20);
-        bigWidth = new Size(20, 100, 20, 20);
-        bigLength = new Size(100, 20, 20, 20);
-        bigWeight = new Size(20, 20, 20, 100);
 
         emptyBox = new BoxImpl(mediumSize);
         fullBox = new BoxImpl(mediumSize);
@@ -137,13 +129,5 @@ public class NGBoxTest {
     @Test(expectedExceptions = EmptyException.class)
     public void failGetEmpty() throws BasicException {
         emptyBox.get();
-    }
-
-    @AfterMethod
-    public void afterMethod() {
-    }
-
-    @AfterClass
-    public void after() {
     }
 }
