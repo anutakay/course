@@ -20,7 +20,7 @@ public class NGBoxTest {
     Box emptyBox;
     Box fullBox;
 
-    Freezable animal;
+    Freezable thing;
 
     @BeforeClass
     public void before() throws BasicException {
@@ -31,19 +31,24 @@ public class NGBoxTest {
         emptyBox = new BoxImpl(mediumSize);
         fullBox = new BoxImpl(mediumSize);
 
-        animal = new FreezableImpl(mediumSize);
-        fullBox.put(animal);
+        thing = new FreezableImpl(mediumSize);
+        fullBox.put(thing);
     }
 
     @BeforeMethod
-    public void beforeMethod() throws BasicException {
+    public void beforeFullBox() throws BasicException {
+        if(!fullBox.isFull()) {
+            fullBox.put(thing);
+        }
+    }
+
+    @BeforeMethod
+    public void beforeEmptyBox() throws BasicException {
         if(emptyBox.isFull()) {
             emptyBox.get();
         }
-        if(!fullBox.isFull()) {
-            fullBox.put(animal);
-        }
     }
+
 
     @Test
     public void successPut() throws BasicException {
@@ -81,10 +86,10 @@ public class NGBoxTest {
 
     @Test
     public void successFits() {
-        boolean res = emptyBox.isFits(animal);
+        boolean res = emptyBox.isFits(thing);
         assertTrue(res);
 
-        res = fullBox.isFits(animal);
+        res = fullBox.isFits(thing);
         assertTrue(res);
     }
 
@@ -117,7 +122,7 @@ public class NGBoxTest {
 
     @Test(expectedExceptions = FullException.class)
     public void failPutInFull() throws BasicException {
-        fullBox.put(animal);
+        fullBox.put(thing);
     }
 
     @Test(expectedExceptions = SizeException.class)
