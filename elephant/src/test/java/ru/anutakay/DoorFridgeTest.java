@@ -2,7 +2,9 @@ package ru.anutakay;
 
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import ru.anutakay.exception.ClosedDoorException;
 import ru.anutakay.exception.DoorStatusException;
+import ru.anutakay.exception.OpenDoorException;
 
 import static org.testng.Assert.assertFalse;
 import static org.testng.Assert.assertTrue;
@@ -44,12 +46,12 @@ public class DoorFridgeTest {
         assertFalse(res);
     }
 
-    @Test(expectedExceptions = DoorStatusException.class)
+    @Test(expectedExceptions = OpenDoorException.class)
     public void failOpen() throws DoorStatusException {
         open.open();
     }
 
-    @Test(expectedExceptions = DoorStatusException.class)
+    @Test(expectedExceptions = ClosedDoorException.class)
     public void failClose() throws DoorStatusException {
         closed.close();
     }

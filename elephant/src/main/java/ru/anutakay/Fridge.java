@@ -13,7 +13,7 @@ public class Fridge extends BoxImpl implements Openable, Named {
     @Override
     public void open() throws DoorStatusException {
         if (isOpened()) {
-            throw new DoorStatusException();
+            throw new OpenDoorException();
         }
         isOpened = true;
     }
@@ -21,7 +21,7 @@ public class Fridge extends BoxImpl implements Openable, Named {
     @Override
     public void close() throws DoorStatusException {
         if (!isOpened()) {
-            throw new DoorStatusException();
+            throw new ClosedDoorException();
         }
         isOpened = false;
     }
@@ -34,7 +34,7 @@ public class Fridge extends BoxImpl implements Openable, Named {
     @Override
     public void put(Freezable object) throws BasicException {
         if (!isOpened()) {
-            BasicException e = new DoorStatusException();
+            BasicException e = new ClosedDoorException();
             throw e;
         }
         super.put(object);
@@ -43,7 +43,7 @@ public class Fridge extends BoxImpl implements Openable, Named {
     @Override
     public Freezable get() throws BasicException {
         if (!isOpened()) {
-            BasicException e = new DoorStatusException();
+            BasicException e = new ClosedDoorException();
             throw e;
         }
        return super.get();
@@ -52,7 +52,7 @@ public class Fridge extends BoxImpl implements Openable, Named {
     @Override
     public boolean isFull() throws BasicException {
         if (!isOpened()) {
-            BasicException e = new DoorStatusException();
+            BasicException e = new ClosedDoorException();
             throw e;
         }
         return super.isFull();
