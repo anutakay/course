@@ -41,6 +41,15 @@ public class Fridge extends BoxImpl implements Openable, Named {
     }
 
     @Override
+    public Freezable get() throws BasicException {
+        if (!isOpened()) {
+            BasicException e = new DoorStatusException();
+            throw e;
+        }
+       return super.get();
+    }
+
+    @Override
     public boolean isFull() throws BasicException {
         if (!isOpened()) {
             BasicException e = new DoorStatusException();

@@ -1,28 +1,36 @@
 package ru.anutakay;
 
-import org.testng.annotations.*;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 import ru.anutakay.exception.BasicException;
 import ru.anutakay.exception.EmptyException;
 import ru.anutakay.exception.FullException;
 import ru.anutakay.exception.SizeException;
 
 import static org.testng.Assert.*;
+import static org.testng.Assert.assertFalse;
+import static org.testng.Assert.assertTrue;
 
 /**
- * Created by anutakay@gmail.com on 14.02.2016.
+ * Created by anutakay@gmail.com on 16.02.2016.
  */
-public class BoxTest extends AbstractBoxTest {
+public class OpenFridgeTest extends AbstractBoxTest {
 
-    Box empty;
-    Box full;
+    Fridge full;
+    Fridge empty;
 
     @BeforeMethod
-    public void  beforeMethod() throws BasicException {
-        empty = new BoxImpl(medium);
-        full = new BoxImpl(medium);
+    public void beforeMethod() throws BasicException {
+
+        full = new Fridge(medium);
+        empty = new Fridge(medium);
+
+        empty.open();
+        full.open();
 
         full.put(thing);
     }
+
 
     @Test
     public void successPut() throws BasicException {

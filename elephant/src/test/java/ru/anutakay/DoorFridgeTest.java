@@ -1,6 +1,5 @@
 package ru.anutakay;
 
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.anutakay.exception.DoorStatusException;
@@ -11,53 +10,47 @@ import static org.testng.Assert.assertTrue;
 /**
  * Created by anutakay@gmail.com on 16.02.2016.
  */
-public class NGDoorFridgeTest {
+public class DoorFridgeTest {
 
-    Fridge openFridge;
-    Fridge closedFridge;
-
-    @BeforeClass
-    public void before() {
-        Size size = new Size(10, 10, 10, 10);
-        openFridge = new Fridge(size);
-        closedFridge = new Fridge(size);
-    }
+    Fridge open;
+    Fridge closed;
 
     @BeforeMethod
-    public void beforeOpen() throws DoorStatusException {
-        if(!openFridge.isOpened()) {
-            openFridge.open();
-        }
+    public void before() throws DoorStatusException {
+        Size size = new Size(10, 10, 10, 10);
+        open = new Fridge(size);
+        open.open();
+        closed = new Fridge(size);
     }
 
     @BeforeMethod
     public void beforeClosed() throws DoorStatusException {
-        if(closedFridge.isOpened()) {
-          closedFridge.close();
+        if(closed.isOpened()) {
+          closed.close();
         }
     }
 
     @Test
     public void successOpen() throws DoorStatusException {
-        closedFridge.open();
-        boolean res = closedFridge.isOpened();
+        closed.open();
+        boolean res = closed.isOpened();
         assertTrue(res);
     }
 
     @Test
     public void  successClose() throws DoorStatusException {
-        openFridge.close();
-        boolean res = openFridge.isOpened();
+        open.close();
+        boolean res = open.isOpened();
         assertFalse(res);
     }
 
     @Test(expectedExceptions = DoorStatusException.class)
     public void failOpen() throws DoorStatusException {
-        openFridge.open();
+        open.open();
     }
 
     @Test(expectedExceptions = DoorStatusException.class)
     public void failClose() throws DoorStatusException {
-        closedFridge.close();
+        closed.close();
     }
 }
