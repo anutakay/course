@@ -16,7 +16,6 @@ public class AbstractBoxTest {
 
     @BeforeClass
     public void beforeClass() throws BasicException {
-        System.out.println("basic before");
         small = new Size(10, 10, 10, 10);
         medium = new Size(20, 20, 20, 20);
         big = new Size(100, 100, 100, 100);

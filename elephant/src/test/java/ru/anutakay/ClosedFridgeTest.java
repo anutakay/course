@@ -22,17 +22,17 @@ public class ClosedFridgeTest extends AbstractBoxTest {
         full.close();
     }
 
-    @Test(expectedExceptions = DoorStatusException.class)
+    @Test(expectedExceptions = ClosedDoorException.class)
     public void failPutClosed() throws BasicException {
         empty.put(thing);
     }
 
-    @Test(expectedExceptions = DoorStatusException.class)
+    @Test(expectedExceptions = ClosedDoorException.class)
     public void  failGetClosed() throws BasicException {
         full.get();
     }
 
-    @Test(expectedExceptions = DoorStatusException.class)
+    @Test(expectedExceptions = ClosedDoorException.class)
     public void  failsFull() throws BasicException {
         full.isFull();
     }
