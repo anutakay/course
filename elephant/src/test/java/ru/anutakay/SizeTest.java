@@ -12,7 +12,7 @@ import static org.testng.Assert.assertTrue;
 /**
  * Created by anutakay@gmail.com on 15.02.2016.
  */
-public class NGSizeTest {
+public class SizeTest {
 
     Size smallSize;
     Size mediumSize;
