@@ -12,23 +12,18 @@ import static org.testng.Assert.assertTrue;
 /**
  * Created by anutakay@gmail.com on 16.02.2016.
  */
-public class DoorFridgeTest {
+public class DoorFridgeTest extends AbstractTest{
 
     Fridge open;
     Fridge closed;
 
     @BeforeMethod
     public void before() throws DoorStatusException {
-        Size size = new Size(10, 10, 10, 10);
-        open = new Fridge(size);
+        open = new Fridge(medium);
         open.open();
-        closed = new Fridge(size);
-    }
-
-    @BeforeMethod
-    public void beforeClosed() throws DoorStatusException {
+        closed = new Fridge(medium);
         if(closed.isOpened()) {
-          closed.close();
+            closed.close();
         }
     }
 
