@@ -2,14 +2,12 @@ package ru.anutakay;
 
 import ru.anutakay.exception.*;
 
-public class BoxImpl implements Box {
-
-    protected Size size;
+public class BoxImpl extends PlaceImpl implements Box {
 
     private Freezable object;
 
     public BoxImpl(Size size) {
-        this.size = size;
+        super(size);
     }
 
     @Override
@@ -37,14 +35,6 @@ public class BoxImpl implements Box {
         return result;
     }
 
-    @Override
-    public boolean isFits(Freezable object) {
-        Size tmpSize = object.getSize();
-        if (tmpSize.greaterThan(size)) {
-            return false;
-        }
-        return true;
-    }
 
     @Override
     public boolean isFull() throws BasicException {
