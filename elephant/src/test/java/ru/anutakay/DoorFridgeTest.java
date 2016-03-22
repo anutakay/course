@@ -23,12 +23,8 @@ public class DoorFridgeTest {
         open = new Fridge(size);
         open.open();
         closed = new Fridge(size);
-    }
-
-    @BeforeMethod
-    public void beforeClosed() throws DoorStatusException {
         if(closed.isOpened()) {
-          closed.close();
+            closed.close();
         }
     }
 
