@@ -7,7 +7,7 @@ import ru.anutakay.exception.*;
 /**
  * Created by anutakay@gmail.com on 16.02.2016.
  */
-public class ClosedFridgeTest extends AbstractBoxTest {
+public class ClosedFridgeTest extends AbstractTest{
 
     Fridge full;
     Fridge empty;

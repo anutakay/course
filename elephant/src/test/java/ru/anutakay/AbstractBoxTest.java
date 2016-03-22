@@ -1,25 +1,108 @@
 package ru.anutakay;
 
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Test;
 import ru.anutakay.exception.BasicException;
+import ru.anutakay.exception.EmptyException;
+import ru.anutakay.exception.FullException;
+import ru.anutakay.exception.SizeException;
+
+import static org.junit.Assert.assertNotNull;
+import static org.testng.Assert.assertFalse;
+import static org.testng.Assert.assertSame;
+import static org.testng.Assert.assertTrue;
 
 /**
  * Created by anutakay@gmail.com on 25.02.2016.
  */
-public class AbstractBoxTest {
+public abstract class AbstractBoxTest extends AbstractTest {
 
-    Size small;
-    Size medium;
-    Size big;
+    Box empty;
+    Box full;
 
-    Freezable thing;
+    @Test
+    public void successPut() throws BasicException {
+        Freezable obj = new FreezableImpl(medium);
 
-    @BeforeClass
-    public void beforeClass() throws BasicException {
-        small = new Size(10, 10, 10, 10);
-        medium = new Size(20, 20, 20, 20);
-        big = new Size(100, 100, 100, 100);
+        empty.put(obj);
 
-        thing = new FreezableImpl(medium);
+        assertTrue(empty.isFull());
+    }
+
+    @Test
+    public void  successGet() throws BasicException {
+        Freezable obj = full.get();
+
+        assertNotNull(obj);
+        assertFalse(full.isFull());
+    }
+
+    @Test
+    public void successPutGet() throws BasicException {
+        Freezable obj = new FreezableImpl(medium);
+
+        empty.put(obj);
+        Freezable res = empty.get();
+
+        assertSame(res, obj);
+    }
+
+    @Test
+    public void  successPutSmall() throws BasicException {
+        Freezable obj = new FreezableImpl(small);
+
+        empty.put(obj);
+    }
+
+    @Test
+    public void successFits() {
+        boolean res = empty.isFits(thing);
+        assertTrue(res);
+
+        res = full.isFits(thing);
+        assertTrue(res);
+    }
+
+    @Test
+    public void successFitsSmall() {
+        Freezable obj = new FreezableImpl(small);
+
+        boolean res = empty.isFits(obj);
+        assertTrue(res);
+
+        res = full.isFits(obj);
+        assertTrue(res);
+    }
+
+    @Test
+    public void successFitsBig() {
+        Freezable obj = new FreezableImpl(big);
+
+        boolean res = empty.isFits(obj);
+        assertFalse(res);
+
+        res = full.isFits(obj);
+        assertFalse(res);
+    }
+
+    @Test(expectedExceptions = NullPointerException.class)
+    public void failPutNullTest() throws BasicException {
+        empty.put(null);
+    }
+
+    @Test(expectedExceptions = FullException.class)
+    public void failPutInFull() throws BasicException {
+        full.put(thing);
+    }
+
+    @Test(expectedExceptions = SizeException.class)
+    public void failPutBig() throws BasicException {
+        Freezable obj = new FreezableImpl(big);
+        empty.put(obj);
+    }
+
+    @Test(expectedExceptions = EmptyException.class)
+    public void failGetEmpty() throws BasicException {
+        empty.get();
     }
 }
