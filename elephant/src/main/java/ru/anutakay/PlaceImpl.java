@@ -5,18 +5,23 @@ package ru.anutakay;
  */
 public class PlaceImpl implements Place {
 
-    protected Size size;
+    private Size size;
 
     public PlaceImpl(Size size) {
         this.size = size;
     }
 
     @Override
-    public boolean isFits(Freezable object) {
+    public final boolean isFits(Freezable object) {
         Size tmpSize = object.getSize();
         if (tmpSize.greaterThan(size)) {
             return false;
         }
         return true;
+    }
+
+    @Override
+    public String toString() {
+        return size.toString();
     }
 }

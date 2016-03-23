@@ -1,6 +1,7 @@
 package ru.anutakay;
 
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.anutakay.exception.BasicException;
 import ru.anutakay.exception.EmptyException;
@@ -17,8 +18,11 @@ import static org.testng.Assert.assertTrue;
  */
 public abstract class AbstractBoxTest extends AbstractTest {
 
-    Box empty;
-    Box full;
+    BoxImpl empty;
+    BoxImpl full;
+
+    @BeforeMethod
+    public abstract void  beforeMethod() throws BasicException;
 
     @Test
     public void successPut() throws BasicException {

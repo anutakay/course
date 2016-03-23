@@ -18,7 +18,7 @@ public class BoxImpl extends PlaceImpl implements Box {
         if (isFull()) {
             throw new FullException();
         }
-        if (object.getSize().greaterThan(size)) {
+        if (!this.isFits(object)) {
             throw new SizeException();
         }
         this.object = object;

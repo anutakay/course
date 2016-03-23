@@ -60,7 +60,7 @@ public class Fridge extends BoxImpl implements Openable, Named {
 
     @Override
     public String toString() {
-        return this.getName() + ": " + size.toString();
+        return this.getName() + ": " + super.toString();
     }
 
     @Override

@@ -2,7 +2,7 @@ package ru.anutakay;
 
 import ru.anutakay.exception.*;
 
-public interface Box extends Place {
+public interface Box {
 
     void put(Freezable object) throws BasicException;
 

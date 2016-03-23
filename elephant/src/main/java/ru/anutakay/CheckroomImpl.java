@@ -22,6 +22,7 @@ public class CheckroomImpl extends PlaceImpl implements Checkroom {
         super(size);
         this.capacity = capacity;
         emptyCells = new HashSet<String>();
+        objects = new HashMap<String, Freezable>();
     }
 
     @Override
@@ -49,6 +50,7 @@ public class CheckroomImpl extends PlaceImpl implements Checkroom {
             throw new UncompatibleValueException();
         }
         Freezable obj = objects.get(key);
+        objects.remove(key);
         emptyCells.add(key);
         return obj;
     }
