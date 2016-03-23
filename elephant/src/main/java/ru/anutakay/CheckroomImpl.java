@@ -20,6 +20,9 @@ public class CheckroomImpl extends PlaceImpl implements Checkroom {
 
     public CheckroomImpl(Size size, int capacity) {
         super(size);
+        if (capacity <= 0) {
+            throw  new UncompatibleValueException();
+        }
         this.capacity = capacity;
         emptyCells = new HashSet<String>();
         objects = new HashMap<String, Freezable>();

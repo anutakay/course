@@ -25,6 +25,16 @@ public class CheckroomTest extends AbstractTest {
         checkroom = new CheckroomImpl(medium, ONE);
     }
 
+    @Test(expectedExceptions = NullPointerException.class)
+    public void failCreatingNullSize() {
+        Checkroom cr = new CheckroomImpl(null, ONE);
+    }
+
+    @Test(expectedExceptions = UncompatibleValueException.class)
+    public void failCreatingBadCapacity() {
+        Checkroom cr = new CheckroomImpl(medium, 0);
+    }
+
     @Test
     public void afterCreating() {
         assertNotNull(checkroom);
@@ -35,8 +45,7 @@ public class CheckroomTest extends AbstractTest {
 
     @Test
     public void successPut() throws FullException, SizeException {
-        Freezable obj = new FreezableImpl(medium);
-        String res = checkroom.put(obj);
+        String res = checkroom.put(thing);
         assertNotNull(res);
         assertEquals(checkroom.usedCapacity(), 1);
         assertFalse(checkroom.hasFreeSpace());
@@ -44,10 +53,9 @@ public class CheckroomTest extends AbstractTest {
 
     @Test
     public void successPutAndGet() throws FullException, SizeException, EmptyException {
-        Freezable obj = new FreezableImpl(medium);
-        String key = checkroom.put(obj);
+        String key = checkroom.put(thing);
         Freezable res = checkroom.get(key);
-        assertSame(res, obj);
+        assertSame(res, thing);
         assertEquals(checkroom.usedCapacity(), 0);
         assertTrue(checkroom.hasFreeSpace());
     }
@@ -71,16 +79,14 @@ public class CheckroomTest extends AbstractTest {
 
     @Test(expectedExceptions = EmptyException.class)
     public void  failGetEmpty() throws FullException, SizeException, EmptyException {
-        Freezable obj = new FreezableImpl(medium);
-        String key = checkroom.put(obj);
+        String key = checkroom.put(thing);
         checkroom.get(key);
         checkroom.get(key);
     }
 
     @Test(expectedExceptions = UncompatibleValueException.class)
     public void  failGetBadKey() throws FullException, SizeException, EmptyException {
-        Freezable obj = new FreezableImpl(medium);
-        checkroom.put(obj);
+        checkroom.put(thing);
         String key = UUID.randomUUID().toString();
         checkroom.get(key);
     }

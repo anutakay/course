@@ -9,8 +9,8 @@ import ru.anutakay.exception.*;
  */
 public class ClosedFridgeTest extends AbstractTest{
 
-    Fridge full;
-    Fridge empty;
+    Fridge full = null;
+    Fridge empty = null;
 
     @BeforeMethod
     public void beforeMethod() throws BasicException {

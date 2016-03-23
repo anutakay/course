@@ -8,6 +8,9 @@ public class PlaceImpl implements Place {
     private Size size;
 
     public PlaceImpl(Size size) {
+        if(size == null) {
+            throw new NullPointerException();
+        }
         this.size = size;
     }
 

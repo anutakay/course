@@ -18,8 +18,8 @@ import static org.testng.Assert.assertTrue;
  */
 public abstract class AbstractBoxTest extends AbstractTest {
 
-    BoxImpl empty;
-    BoxImpl full;
+    BoxImpl empty = null;
+    BoxImpl full = null;
 
     @BeforeMethod
     public abstract void  beforeMethod() throws BasicException;
