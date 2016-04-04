@@ -3,20 +3,20 @@ package ru.anutakay;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.anutakay.exception.*;
-import ru.anutakay.fridge.BoxFridge;
+import ru.anutakay.fridge.Fridge;
 
 /**
  * Created by anutakay@gmail.com on 16.02.2016.
  */
 public class ClosedFridgeTest extends AbstractTest{
 
-    BoxFridge full = null;
-    BoxFridge empty = null;
+    Fridge full = null;
+    Fridge empty = null;
 
     @BeforeMethod
     public void beforeMethod() throws BasicException {
-        empty = new BoxFridge(medium);
-        full = new BoxFridge(medium);
+        empty = new Fridge(medium);
+        full = new Fridge(medium);
 
         full.open();
         full.put(thing);

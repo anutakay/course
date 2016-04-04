@@ -3,7 +3,7 @@ package ru.anutakay.fridge;
 import ru.anutakay.animals.IAnimal;
 import ru.anutakay.exception.*;
 
-public interface OnePlaceBox {
+public interface SingleBox {
 
     void put(IAnimal object) throws BasicException;
 

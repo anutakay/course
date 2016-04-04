@@ -6,7 +6,7 @@ import ru.anutakay.exception.BasicException;
 /**
  * Created by anutakay@gmail.com on 22.03.2016.
  */
-public interface MultiplePlaceBox {
+public interface MultipleBox {
 
     String put(IAnimal animal) throws BasicException;
 

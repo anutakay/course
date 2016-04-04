@@ -4,12 +4,8 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.anutakay.animals.IAnimal;
 import ru.anutakay.animals.Animal;
-import ru.anutakay.exception.BasicException;
-import ru.anutakay.exception.EmptyException;
-import ru.anutakay.exception.FullException;
-import ru.anutakay.exception.SizeException;
+import ru.anutakay.exception.*;
 import ru.anutakay.fridge.Checkroom;
-import ru.anutakay.fridge.MultiplePlaceBox;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -23,14 +19,15 @@ import static org.testng.Assert.*;
  */
 public class CheckroomMultipleTest extends AbstractTest {
 
-    MultiplePlaceBox checkroom = null;
+    Checkroom checkroom = null;
 
     static final int CAPACITY = 10;
     static final int HALF = 5;
 
     @BeforeMethod
-    public void beforeMethod() {
+    public void beforeMethod() throws DoorStatusException {
         checkroom = new Checkroom(medium, CAPACITY);
+        checkroom.open();
     }
 
     @Test
