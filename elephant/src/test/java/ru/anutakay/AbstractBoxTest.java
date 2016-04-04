@@ -1,12 +1,14 @@
 package ru.anutakay;
 
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import ru.anutakay.animals.IAnimal;
+import ru.anutakay.animals.Animal;
 import ru.anutakay.exception.BasicException;
 import ru.anutakay.exception.EmptyException;
 import ru.anutakay.exception.FullException;
 import ru.anutakay.exception.SizeException;
+import ru.anutakay.fridge.Box;
 
 import static org.junit.Assert.assertNotNull;
 import static org.testng.Assert.assertFalse;
@@ -18,15 +20,15 @@ import static org.testng.Assert.assertTrue;
  */
 public abstract class AbstractBoxTest extends AbstractTest {
 
-    BoxImpl empty = null;
-    BoxImpl full = null;
+    Box empty = null;
+    Box full = null;
 
     @BeforeMethod
     public abstract void  beforeMethod() throws BasicException;
 
     @Test
     public void successPut() throws BasicException {
-        Freezable obj = new FreezableImpl(medium);
+        IAnimal obj = new Animal(medium);
 
         empty.put(obj);
 
@@ -35,7 +37,7 @@ public abstract class AbstractBoxTest extends AbstractTest {
 
     @Test
     public void  successGet() throws BasicException {
-        Freezable obj = full.get();
+        IAnimal obj = full.get();
 
         assertNotNull(obj);
         assertFalse(full.isFull());
@@ -43,17 +45,17 @@ public abstract class AbstractBoxTest extends AbstractTest {
 
     @Test
     public void successPutGet() throws BasicException {
-        Freezable obj = new FreezableImpl(medium);
+        IAnimal obj = new Animal(medium);
 
         empty.put(obj);
-        Freezable res = empty.get();
+        IAnimal res = empty.get();
 
         assertSame(res, obj);
     }
 
     @Test
     public void  successPutSmall() throws BasicException {
-        Freezable obj = new FreezableImpl(small);
+        IAnimal obj = new Animal(small);
 
         empty.put(obj);
     }
@@ -69,7 +71,7 @@ public abstract class AbstractBoxTest extends AbstractTest {
 
     @Test
     public void successFitsSmall() {
-        Freezable obj = new FreezableImpl(small);
+        IAnimal obj = new Animal(small);
 
         boolean res = empty.isFits(obj);
         assertTrue(res);
@@ -80,7 +82,7 @@ public abstract class AbstractBoxTest extends AbstractTest {
 
     @Test
     public void successFitsBig() {
-        Freezable obj = new FreezableImpl(big);
+        IAnimal obj = new Animal(big);
 
         boolean res = empty.isFits(obj);
         assertFalse(res);
@@ -101,7 +103,7 @@ public abstract class AbstractBoxTest extends AbstractTest {
 
     @Test(expectedExceptions = SizeException.class)
     public void failPutBig() throws BasicException {
-        Freezable obj = new FreezableImpl(big);
+        IAnimal obj = new Animal(big);
         empty.put(obj);
     }
 

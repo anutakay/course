@@ -2,10 +2,14 @@ package ru.anutakay;
 
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import ru.anutakay.animals.IAnimal;
+import ru.anutakay.animals.Animal;
 import ru.anutakay.exception.EmptyException;
 import ru.anutakay.exception.FullException;
 import ru.anutakay.exception.SizeException;
 import ru.anutakay.exception.UncompatibleValueException;
+import ru.anutakay.fridge.Checkroom;
+import ru.anutakay.fridge.MultiplePlaceBox;
 
 import java.util.UUID;
 
@@ -16,23 +20,23 @@ import static org.testng.Assert.*;
  */
 public class CheckroomTest extends AbstractTest {
 
-    Checkroom checkroom;
+    MultiplePlaceBox checkroom;
 
     static final int ONE = 1;
 
     @BeforeMethod
     public void beforeMethod() {
-        checkroom = new CheckroomImpl(medium, ONE);
+        checkroom = new Checkroom(medium, ONE);
     }
 
     @Test(expectedExceptions = NullPointerException.class)
     public void failCreatingNullSize() {
-        Checkroom cr = new CheckroomImpl(null, ONE);
+        MultiplePlaceBox cr = new Checkroom(null, ONE);
     }
 
     @Test(expectedExceptions = UncompatibleValueException.class)
     public void failCreatingBadCapacity() {
-        Checkroom cr = new CheckroomImpl(medium, 0);
+        MultiplePlaceBox cr = new Checkroom(medium, 0);
     }
 
     @Test
@@ -54,7 +58,7 @@ public class CheckroomTest extends AbstractTest {
     @Test
     public void successPutAndGet() throws FullException, SizeException, EmptyException {
         String key = checkroom.put(thing);
-        Freezable res = checkroom.get(key);
+        IAnimal res = checkroom.get(key);
         assertSame(res, thing);
         assertEquals(checkroom.usedCapacity(), 0);
         assertTrue(checkroom.hasFreeSpace());
@@ -62,7 +66,7 @@ public class CheckroomTest extends AbstractTest {
 
     @Test(expectedExceptions = SizeException.class)
     public void failPutBigSize() throws FullException, SizeException {
-        Freezable obj = new FreezableImpl(big);
+        IAnimal obj = new Animal(big);
         String res = checkroom.put(obj);
         assertNotNull(res);
         assertEquals(checkroom.usedCapacity(), 1);
@@ -71,8 +75,8 @@ public class CheckroomTest extends AbstractTest {
 
     @Test(expectedExceptions = FullException.class)
     public void failPutFull() throws FullException, SizeException {
-        Freezable obj = new FreezableImpl(medium);
-        Freezable obj2 = new FreezableImpl(medium);
+        IAnimal obj = new Animal(medium);
+        IAnimal obj2 = new Animal(medium);
         checkroom.put(obj);
         checkroom.put(obj2);
     }
@@ -93,12 +97,12 @@ public class CheckroomTest extends AbstractTest {
 
     @Test
     public void successKeyReusing() throws FullException, SizeException, EmptyException {
-        Freezable obj1 = new FreezableImpl(medium);
-        Freezable obj2 = new FreezableImpl(medium);
+        IAnimal obj1 = new Animal(medium);
+        IAnimal obj2 = new Animal(medium);
         String key1 = checkroom.put(obj1);
         checkroom.get(key1);
         String key2 = checkroom.put(obj2);
-        Freezable res = checkroom.get(key2);
+        IAnimal res = checkroom.get(key2);
         assertEquals(key1, key2);
         assertEquals(res, obj2);
     }

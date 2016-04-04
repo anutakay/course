@@ -1,5 +1,7 @@
-package ru.anutakay;
+package ru.anutakay.fridge;
 
+import ru.anutakay.animals.size.Size;
+import ru.anutakay.animals.IAnimal;
 import ru.anutakay.exception.EmptyException;
 import ru.anutakay.exception.FullException;
 import ru.anutakay.exception.SizeException;
@@ -10,26 +12,26 @@ import java.util.*;
 /**
  * Created by akaygorodova@issart.com on 22.03.2016.
  */
-public class CheckroomImpl extends PlaceImpl implements Checkroom {
+public class Checkroom extends AbstractFridge implements MultiplePlaceBox {
 
     private int capacity;
 
     Set<String> emptyCells;
 
-    Map<String, Freezable> objects;
+    Map<String, IAnimal> objects;
 
-    public CheckroomImpl(Size size, int capacity) {
+    public Checkroom(Size size, int capacity) {
         super(size);
         if (capacity <= 0) {
             throw  new UncompatibleValueException();
         }
         this.capacity = capacity;
         emptyCells = new HashSet<String>();
-        objects = new HashMap<String, Freezable>();
+        objects = new HashMap<String, IAnimal>();
     }
 
     @Override
-    public String put(Freezable freezable) throws FullException, SizeException {
+    public String put(IAnimal freezable) throws FullException, SizeException {
         if(!isFits(freezable)) {
             throw new SizeException();
         }
@@ -43,7 +45,7 @@ public class CheckroomImpl extends PlaceImpl implements Checkroom {
     }
 
     @Override
-    public Freezable get(String key) throws EmptyException {
+    public IAnimal get(String key) throws EmptyException {
         boolean empty = emptyCells.contains(key);
         if(empty) {
             throw new EmptyException();
@@ -52,7 +54,7 @@ public class CheckroomImpl extends PlaceImpl implements Checkroom {
         if(!filled) {
             throw new UncompatibleValueException();
         }
-        Freezable obj = objects.get(key);
+        IAnimal obj = objects.get(key);
         objects.remove(key);
         emptyCells.add(key);
         return obj;

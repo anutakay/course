@@ -1,13 +1,9 @@
 package ru.anutakay;
 
 import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
 import ru.anutakay.exception.BasicException;
-import ru.anutakay.exception.EmptyException;
-import ru.anutakay.exception.FullException;
-import ru.anutakay.exception.SizeException;
+import ru.anutakay.fridge.Fridge;
 
-import static org.testng.Assert.*;
 import static org.testng.Assert.assertFalse;
 import static org.testng.Assert.assertTrue;
 

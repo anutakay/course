@@ -1,17 +1,19 @@
-package ru.anutakay;
+package ru.anutakay.fridge;
 
+import ru.anutakay.animals.size.Size;
+import ru.anutakay.animals.IAnimal;
 import ru.anutakay.exception.*;
 
-public class BoxImpl extends PlaceImpl implements Box {
+public class Box extends AbstractFridge implements OnePlaceBox {
 
-    private Freezable object;
+    private IAnimal object;
 
-    public BoxImpl(Size size) {
+    public Box(Size size) {
         super(size);
     }
 
     @Override
-    public void put(Freezable object) throws BasicException {
+    public void put(IAnimal object) throws BasicException {
         if (object == null) {
             throw new NullPointerException();
         }
@@ -25,12 +27,12 @@ public class BoxImpl extends PlaceImpl implements Box {
     }
 
     @Override
-    public Freezable get() throws BasicException {
+    public IAnimal get() throws BasicException {
         if (!isFull()) {
             BasicException e = new EmptyException();
             throw e;
         }
-        Freezable result = object;
+        IAnimal result = object;
         this.object = null;
         return result;
     }

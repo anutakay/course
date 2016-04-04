@@ -1,5 +1,11 @@
-package ru.anutakay;
+package ru.anutakay.app;
 
+import ru.anutakay.fridge.Fridge;
+import ru.anutakay.animals.size.Size;
+import ru.anutakay.animals.size.Weight;
+import ru.anutakay.animals.Crocodile;
+import ru.anutakay.animals.Elephant;
+import ru.anutakay.animals.Giraffe;
 import ru.anutakay.client.Client;
 import ru.anutakay.client.StrongClient;
 import ru.anutakay.exception.*;

@@ -33,7 +33,7 @@
                     <arguments>
                         <argument>-classpath</argument>
                         <classpath/>
-                        <argument>ru.anutakay.App</argument>
+                        <argument>ru.anutakay.app.App</argument>
                     </arguments>
                 </configuration>
             </plugin>

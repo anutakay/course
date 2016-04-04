@@ -3,6 +3,7 @@ package ru.anutakay;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.anutakay.exception.*;
+import ru.anutakay.fridge.Fridge;
 
 /**
  * Created by anutakay@gmail.com on 16.02.2016.

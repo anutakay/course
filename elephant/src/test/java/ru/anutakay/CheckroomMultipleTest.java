@@ -2,9 +2,13 @@ package ru.anutakay;
 
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import ru.anutakay.animals.IAnimal;
+import ru.anutakay.animals.Animal;
 import ru.anutakay.exception.EmptyException;
 import ru.anutakay.exception.FullException;
 import ru.anutakay.exception.SizeException;
+import ru.anutakay.fridge.Checkroom;
+import ru.anutakay.fridge.MultiplePlaceBox;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -18,14 +22,14 @@ import static org.testng.Assert.*;
  */
 public class CheckroomMultipleTest extends AbstractTest {
 
-    Checkroom checkroom = null;
+    MultiplePlaceBox checkroom = null;
 
     static final int CAPACITY = 10;
     static final int HALF = 5;
 
     @BeforeMethod
     public void beforeMethod() {
-        checkroom = new CheckroomImpl(medium, CAPACITY);
+        checkroom = new Checkroom(medium, CAPACITY);
     }
 
     @Test
@@ -38,12 +42,12 @@ public class CheckroomMultipleTest extends AbstractTest {
 
     @Test
     public void successPut() throws FullException, SizeException {
-        Freezable obj = null;
+        IAnimal obj = null;
         Set<String> keys = new HashSet<String>();
         String key = null;
         for(int i = 0; i < CAPACITY; i++) {
             assertTrue(checkroom.hasFreeSpace());
-            obj = new FreezableImpl(medium);
+            obj = new Animal(medium);
             key = checkroom.put(obj);
             keys.add(key);
         }
@@ -54,7 +58,7 @@ public class CheckroomMultipleTest extends AbstractTest {
 
     @Test
     public void successPutAfterGet() throws FullException, SizeException, EmptyException {
-        Freezable obj = null;
+        IAnimal obj = null;
         Set<String> keys = new HashSet<String>();
         String key = null;
         key = checkroom.put(thing);
@@ -62,7 +66,7 @@ public class CheckroomMultipleTest extends AbstractTest {
         checkroom.get(key);
         for(int i = 0; i < CAPACITY; i++) {
             assertTrue(checkroom.hasFreeSpace());
-            obj = new FreezableImpl(medium);
+            obj = new Animal(medium);
             key = checkroom.put(obj);
             keys.add(key);
         }
@@ -73,11 +77,11 @@ public class CheckroomMultipleTest extends AbstractTest {
 
     @Test
     public void successPutAndGet() throws FullException, SizeException, EmptyException {
-        Freezable obj = null;
-        Map<String, Freezable> keys = new HashMap<String, Freezable>();
+        IAnimal obj = null;
+        Map<String, IAnimal> keys = new HashMap<String, IAnimal>();
         String key = null;
         for(int i = 0; i < CAPACITY; i++) {
-            obj = new FreezableImpl(medium);
+            obj = new Animal(medium);
             key = checkroom.put(obj);
             keys.put(key, obj);
         }
@@ -96,11 +100,11 @@ public class CheckroomMultipleTest extends AbstractTest {
 
     @Test
     public void successPutHalf() throws FullException, SizeException {
-        Freezable obj = null;
+        IAnimal obj = null;
         Set<String> keys = new HashSet<String>();
         String key = null;
         for(int i = 0; i < HALF; i++) {
-            obj = new FreezableImpl(medium);
+            obj = new Animal(medium);
             key = checkroom.put(obj);
             keys.add(key);
         }
@@ -112,11 +116,11 @@ public class CheckroomMultipleTest extends AbstractTest {
 
     @Test(expectedExceptions = FullException.class)
     public void failPutFull() throws FullException, SizeException {
-        Freezable obj = null;
+        IAnimal obj = null;
         Set<String> keys = new HashSet<String>();
         String key = null;
         for(int i = 0; i < CAPACITY + 1; i++) {
-            obj = new FreezableImpl(medium);
+            obj = new Animal(medium);
             key = checkroom.put(obj);
             keys.add(key);
         }

@@ -1,10 +1,13 @@
-package ru.anutakay;
+package ru.anutakay.animals;
 
-public class FreezableImpl implements Freezable, Named {
+import ru.anutakay.Named;
+import ru.anutakay.animals.size.Size;
+
+public class Animal implements IAnimal, Named {
 
     private Size size;
 
-    public FreezableImpl(Size size) {
+    public Animal(Size size) {
         if (size == null) {
             throw new NullPointerException();
         }

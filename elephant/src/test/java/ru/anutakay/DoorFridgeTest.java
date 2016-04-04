@@ -5,6 +5,7 @@ import org.testng.annotations.Test;
 import ru.anutakay.exception.ClosedDoorException;
 import ru.anutakay.exception.DoorStatusException;
 import ru.anutakay.exception.OpenDoorException;
+import ru.anutakay.fridge.Fridge;
 
 import static org.testng.Assert.assertFalse;
 import static org.testng.Assert.assertTrue;

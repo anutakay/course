@@ -1,4 +1,4 @@
-package ru.anutakay;
+package ru.anutakay.animals.size;
 
 import ru.anutakay.exception.UncompatibleClassException;
 import ru.anutakay.exception.UncompatibleValueException;
