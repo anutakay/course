@@ -8,7 +8,7 @@ import ru.anutakay.exception.BasicException;
 import ru.anutakay.exception.EmptyException;
 import ru.anutakay.exception.FullException;
 import ru.anutakay.exception.SizeException;
-import ru.anutakay.fridge.Box;
+import ru.anutakay.fridge.Fridge;
 
 import static org.junit.Assert.assertNotNull;
 import static org.testng.Assert.assertFalse;
@@ -20,8 +20,8 @@ import static org.testng.Assert.assertTrue;
  */
 public abstract class AbstractBoxTest extends AbstractTest {
 
-    Box empty = null;
-    Box full = null;
+    Fridge empty = null;
+    Fridge full = null;
 
     @BeforeMethod
     public abstract void  beforeMethod() throws BasicException;

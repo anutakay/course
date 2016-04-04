@@ -1,19 +1,21 @@
 package ru.anutakay.fridge;
 
+import ru.anutakay.Named;
 import ru.anutakay.animals.size.Size;
 import ru.anutakay.animals.IAnimal;
 import ru.anutakay.exception.*;
 
-public class Box extends AbstractFridge implements OnePlaceBox {
+public class Fridge extends AbstractFridge implements OnePlaceBox, Named {
 
     private IAnimal object;
 
-    public Box(Size size) {
+    public Fridge(Size size) {
         super(size);
     }
 
     @Override
     public void put(IAnimal object) throws BasicException {
+        checkDoor();
         if (object == null) {
             throw new NullPointerException();
         }
@@ -28,6 +30,7 @@ public class Box extends AbstractFridge implements OnePlaceBox {
 
     @Override
     public IAnimal get() throws BasicException {
+        checkDoor();
         if (!isFull()) {
             BasicException e = new EmptyException();
             throw e;
@@ -40,10 +43,21 @@ public class Box extends AbstractFridge implements OnePlaceBox {
 
     @Override
     public boolean isFull() throws BasicException {
+        checkDoor();
         if (object == null) {
             return false;
         } else {
             return true;
         }
+    }
+
+    @Override
+    public String toString() {
+        return this.getName() + ": " + super.toString();
+    }
+
+    @Override
+    public String getName() {
+        return "ХОЛОДИЛЬНИК";
     }
 }

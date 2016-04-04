@@ -1,9 +1,9 @@
 package ru.anutakay.client;
 
 import ru.anutakay.animals.Animal;
-import ru.anutakay.fridge.BoxFridge;
+import ru.anutakay.fridge.Fridge;
 import ru.anutakay.exception.*;
 
 public interface Client {
-    boolean putToFridge(BoxFridge fridge, Animal object) throws BasicException;
+    boolean putToFridge(Fridge fridge, Animal object) throws BasicException;
 }

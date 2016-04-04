@@ -2,10 +2,7 @@ package ru.anutakay;
 
 import org.testng.annotations.BeforeMethod;
 import ru.anutakay.exception.BasicException;
-import ru.anutakay.fridge.BoxFridge;
-
-import static org.testng.Assert.assertFalse;
-import static org.testng.Assert.assertTrue;
+import ru.anutakay.fridge.Fridge;
 
 /**
  * Created by anutakay@gmail.com on 16.02.2016.
@@ -14,8 +11,8 @@ public class OpenFridgeTest extends AbstractBoxTest {
 
     @BeforeMethod
     public void beforeMethod() throws BasicException {
-        BoxFridge fullFridge = new BoxFridge(medium);
-        BoxFridge emptyFridge = new BoxFridge(medium);
+        Fridge fullFridge = new Fridge(medium);
+        Fridge emptyFridge = new Fridge(medium);
 
         emptyFridge.open();
         fullFridge.open();
