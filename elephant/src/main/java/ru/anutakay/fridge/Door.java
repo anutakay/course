@@ -32,11 +32,4 @@ class Door implements Openable {
     public boolean isOpened() {
         return isOpened;
     }
-
-    public void checkDoor() throws BasicException {
-        if (!isOpened()) {
-            BasicException e = new ClosedDoorException();
-            throw e;
-        }
-    }
 }

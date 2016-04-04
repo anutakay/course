@@ -5,7 +5,7 @@ import org.testng.annotations.Test;
 import ru.anutakay.exception.ClosedDoorException;
 import ru.anutakay.exception.DoorStatusException;
 import ru.anutakay.exception.OpenDoorException;
-import ru.anutakay.fridge.Fridge;
+import ru.anutakay.fridge.BoxFridge;
 
 import static org.testng.Assert.assertFalse;
 import static org.testng.Assert.assertTrue;
@@ -15,14 +15,14 @@ import static org.testng.Assert.assertTrue;
  */
 public class DoorFridgeTest extends AbstractTest{
 
-    Fridge open;
-    Fridge closed;
+    BoxFridge open;
+    BoxFridge closed;
 
     @BeforeMethod
     public void before() throws DoorStatusException {
-        open = new Fridge(medium);
+        open = new BoxFridge(medium);
         open.open();
-        closed = new Fridge(medium);
+        closed = new BoxFridge(medium);
         if(closed.isOpened()) {
             closed.close();
         }

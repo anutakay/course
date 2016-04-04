@@ -82,9 +82,4 @@ public class Checkroom extends AbstractFridge implements MultiplePlaceBox {
         }
         return res;
     }
-
-    @Override
-    public boolean isFits(IAnimal object) {
-        return place.isFits(object);
-    }
 }
