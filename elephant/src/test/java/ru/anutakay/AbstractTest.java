@@ -1,6 +1,9 @@
 package ru.anutakay;
 
 import org.testng.annotations.BeforeClass;
+import ru.anutakay.animals.IAnimal;
+import ru.anutakay.animals.Animal;
+import ru.anutakay.animals.size.Size;
 import ru.anutakay.exception.BasicException;
 
 /**
@@ -12,7 +15,7 @@ public class AbstractTest {
     Size medium;
     Size big;
 
-    Freezable thing;
+    IAnimal thing;
 
     @BeforeClass
     public void beforeClass() throws BasicException {
@@ -20,7 +23,7 @@ public class AbstractTest {
         medium = new Size(20, 20, 20, 20);
         big = new Size(100, 100, 100, 100);
 
-        thing = new FreezableImpl(medium);
+        thing = new Animal(medium);
     }
 
 }

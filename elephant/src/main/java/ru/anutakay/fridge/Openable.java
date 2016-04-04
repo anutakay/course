@@ -1,4 +1,4 @@
-package ru.anutakay;
+package ru.anutakay.fridge;
 
 import ru.anutakay.exception.DoorStatusException;
 

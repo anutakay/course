@@ -2,6 +2,8 @@ package ru.anutakay;
 
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+import ru.anutakay.animals.size.BaseSize;
+import ru.anutakay.animals.size.Size;
 import ru.anutakay.exception.BasicException;
 import ru.anutakay.exception.UncompatibleClassException;
 import ru.anutakay.exception.UncompatibleValueException;

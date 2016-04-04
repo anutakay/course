@@ -1,4 +1,4 @@
-package ru.anutakay;
+package ru.anutakay.animals.size;
 
 public interface BaseSize {
 

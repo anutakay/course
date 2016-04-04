@@ -1,6 +1,8 @@
-package ru.anutakay;
+package ru.anutakay.animals;
 
-public class Elephant extends FreezableImpl {
+import ru.anutakay.animals.size.Size;
+
+public class Elephant extends Animal {
 
     public Elephant(Size size) {
         super(size);
