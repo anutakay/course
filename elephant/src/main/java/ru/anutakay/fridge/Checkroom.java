@@ -9,7 +9,7 @@ import java.util.*;
 /**
  * Created by akaygorodova@issart.com on 22.03.2016.
  */
-public class Checkroom extends AbstractFridge implements MultiplePlaceBox {
+public class Checkroom extends AbstractFridge implements MultipleBox {
 
     private int capacity;
 
@@ -29,6 +29,7 @@ public class Checkroom extends AbstractFridge implements MultiplePlaceBox {
 
     @Override
     public String put(IAnimal freezable) throws BasicException {
+        checkDoor();
         if(!isFits(freezable)) {
             throw new SizeException();
         }
@@ -43,6 +44,7 @@ public class Checkroom extends AbstractFridge implements MultiplePlaceBox {
 
     @Override
     public IAnimal get(String key) throws BasicException {
+        checkDoor();
         boolean empty = emptyCells.contains(key);
         if(empty) {
             throw new EmptyException();

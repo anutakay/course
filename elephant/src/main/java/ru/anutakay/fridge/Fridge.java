@@ -5,7 +5,7 @@ import ru.anutakay.animals.size.Size;
 import ru.anutakay.animals.IAnimal;
 import ru.anutakay.exception.*;
 
-public class Fridge extends AbstractFridge implements OnePlaceBox, Named {
+public class Fridge extends AbstractFridge implements SingleBox, Named {
 
     private IAnimal object;
 

@@ -6,7 +6,7 @@ import ru.anutakay.animals.IAnimal;
 import ru.anutakay.animals.Animal;
 import ru.anutakay.exception.*;
 import ru.anutakay.fridge.Checkroom;
-import ru.anutakay.fridge.MultiplePlaceBox;
+import ru.anutakay.fridge.MultipleBox;
 
 import java.util.UUID;
 
@@ -17,23 +17,24 @@ import static org.testng.Assert.*;
  */
 public class CheckroomTest extends AbstractTest {
 
-    MultiplePlaceBox checkroom;
+    Checkroom checkroom;
 
     static final int ONE = 1;
 
     @BeforeMethod
-    public void beforeMethod() {
+    public void beforeMethod() throws DoorStatusException {
         checkroom = new Checkroom(medium, ONE);
+        checkroom.open();
     }
 
     @Test(expectedExceptions = NullPointerException.class)
     public void failCreatingNullSize() {
-        MultiplePlaceBox cr = new Checkroom(null, ONE);
+        MultipleBox cr = new Checkroom(null, ONE);
     }
 
     @Test(expectedExceptions = UncompatibleValueException.class)
     public void failCreatingBadCapacity() {
-        MultiplePlaceBox cr = new Checkroom(medium, 0);
+        MultipleBox cr = new Checkroom(medium, 0);
     }
 
     @Test
