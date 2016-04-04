@@ -4,6 +4,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.anutakay.animals.IAnimal;
 import ru.anutakay.animals.Animal;
+import ru.anutakay.exception.BasicException;
 import ru.anutakay.exception.EmptyException;
 import ru.anutakay.exception.FullException;
 import ru.anutakay.exception.SizeException;
@@ -33,7 +34,7 @@ public class CheckroomMultipleTest extends AbstractTest {
     }
 
     @Test
-    public void afterCreating() {
+    public void afterCreating() throws BasicException {
         assertNotNull(checkroom);
         assertTrue(checkroom.hasFreeSpace());
         assertEquals(checkroom.maxCapacity(), CAPACITY);
@@ -41,7 +42,7 @@ public class CheckroomMultipleTest extends AbstractTest {
     }
 
     @Test
-    public void successPut() throws FullException, SizeException {
+    public void successPut() throws BasicException {
         IAnimal obj = null;
         Set<String> keys = new HashSet<String>();
         String key = null;
@@ -57,7 +58,7 @@ public class CheckroomMultipleTest extends AbstractTest {
     }
 
     @Test
-    public void successPutAfterGet() throws FullException, SizeException, EmptyException {
+    public void successPutAfterGet() throws BasicException {
         IAnimal obj = null;
         Set<String> keys = new HashSet<String>();
         String key = null;
@@ -76,7 +77,7 @@ public class CheckroomMultipleTest extends AbstractTest {
     }
 
     @Test
-    public void successPutAndGet() throws FullException, SizeException, EmptyException {
+    public void successPutAndGet() throws BasicException {
         IAnimal obj = null;
         Map<String, IAnimal> keys = new HashMap<String, IAnimal>();
         String key = null;
@@ -99,7 +100,7 @@ public class CheckroomMultipleTest extends AbstractTest {
     }
 
     @Test
-    public void successPutHalf() throws FullException, SizeException {
+    public void successPutHalf() throws BasicException {
         IAnimal obj = null;
         Set<String> keys = new HashSet<String>();
         String key = null;
@@ -115,7 +116,7 @@ public class CheckroomMultipleTest extends AbstractTest {
     }
 
     @Test(expectedExceptions = FullException.class)
-    public void failPutFull() throws FullException, SizeException {
+    public void failPutFull() throws BasicException {
         IAnimal obj = null;
         Set<String> keys = new HashSet<String>();
         String key = null;

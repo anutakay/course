@@ -4,10 +4,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.anutakay.animals.IAnimal;
 import ru.anutakay.animals.Animal;
-import ru.anutakay.exception.EmptyException;
-import ru.anutakay.exception.FullException;
-import ru.anutakay.exception.SizeException;
-import ru.anutakay.exception.UncompatibleValueException;
+import ru.anutakay.exception.*;
 import ru.anutakay.fridge.Checkroom;
 import ru.anutakay.fridge.MultiplePlaceBox;
 
@@ -40,7 +37,7 @@ public class CheckroomTest extends AbstractTest {
     }
 
     @Test
-    public void afterCreating() {
+    public void afterCreating() throws BasicException {
         assertNotNull(checkroom);
         assertTrue(checkroom.hasFreeSpace());
         assertEquals(checkroom.maxCapacity(), ONE);
@@ -48,7 +45,7 @@ public class CheckroomTest extends AbstractTest {
     }
 
     @Test
-    public void successPut() throws FullException, SizeException {
+    public void successPut() throws BasicException {
         String res = checkroom.put(thing);
         assertNotNull(res);
         assertEquals(checkroom.usedCapacity(), 1);
@@ -56,7 +53,7 @@ public class CheckroomTest extends AbstractTest {
     }
 
     @Test
-    public void successPutAndGet() throws FullException, SizeException, EmptyException {
+    public void successPutAndGet() throws BasicException {
         String key = checkroom.put(thing);
         IAnimal res = checkroom.get(key);
         assertSame(res, thing);
@@ -65,7 +62,7 @@ public class CheckroomTest extends AbstractTest {
     }
 
     @Test(expectedExceptions = SizeException.class)
-    public void failPutBigSize() throws FullException, SizeException {
+    public void failPutBigSize() throws BasicException {
         IAnimal obj = new Animal(big);
         String res = checkroom.put(obj);
         assertNotNull(res);
@@ -74,7 +71,7 @@ public class CheckroomTest extends AbstractTest {
     }
 
     @Test(expectedExceptions = FullException.class)
-    public void failPutFull() throws FullException, SizeException {
+    public void failPutFull() throws BasicException {
         IAnimal obj = new Animal(medium);
         IAnimal obj2 = new Animal(medium);
         checkroom.put(obj);
@@ -82,21 +79,21 @@ public class CheckroomTest extends AbstractTest {
     }
 
     @Test(expectedExceptions = EmptyException.class)
-    public void  failGetEmpty() throws FullException, SizeException, EmptyException {
+    public void  failGetEmpty() throws BasicException {
         String key = checkroom.put(thing);
         checkroom.get(key);
         checkroom.get(key);
     }
 
     @Test(expectedExceptions = UncompatibleValueException.class)
-    public void  failGetBadKey() throws FullException, SizeException, EmptyException {
+    public void  failGetBadKey() throws BasicException {
         checkroom.put(thing);
         String key = UUID.randomUUID().toString();
         checkroom.get(key);
     }
 
     @Test
-    public void successKeyReusing() throws FullException, SizeException, EmptyException {
+    public void successKeyReusing() throws BasicException {
         IAnimal obj1 = new Animal(medium);
         IAnimal obj2 = new Animal(medium);
         String key1 = checkroom.put(obj1);

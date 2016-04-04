@@ -2,10 +2,7 @@ package ru.anutakay.fridge;
 
 import ru.anutakay.animals.size.Size;
 import ru.anutakay.animals.IAnimal;
-import ru.anutakay.exception.EmptyException;
-import ru.anutakay.exception.FullException;
-import ru.anutakay.exception.SizeException;
-import ru.anutakay.exception.UncompatibleValueException;
+import ru.anutakay.exception.*;
 
 import java.util.*;
 
@@ -31,7 +28,7 @@ public class Checkroom extends AbstractFridge implements MultiplePlaceBox {
     }
 
     @Override
-    public String put(IAnimal freezable) throws FullException, SizeException {
+    public String put(IAnimal freezable) throws BasicException {
         if(!isFits(freezable)) {
             throw new SizeException();
         }
@@ -45,7 +42,7 @@ public class Checkroom extends AbstractFridge implements MultiplePlaceBox {
     }
 
     @Override
-    public IAnimal get(String key) throws EmptyException {
+    public IAnimal get(String key) throws BasicException {
         boolean empty = emptyCells.contains(key);
         if(empty) {
             throw new EmptyException();
@@ -61,7 +58,7 @@ public class Checkroom extends AbstractFridge implements MultiplePlaceBox {
     }
 
     @Override
-    public boolean hasFreeSpace() {
+    public boolean hasFreeSpace() throws BasicException {
         return maxCapacity() > usedCapacity();
     }
 
@@ -84,5 +81,10 @@ public class Checkroom extends AbstractFridge implements MultiplePlaceBox {
             emptyCells.remove(res);
         }
         return res;
+    }
+
+    @Override
+    public boolean isFits(IAnimal object) {
+        return place.isFits(object);
     }
 }

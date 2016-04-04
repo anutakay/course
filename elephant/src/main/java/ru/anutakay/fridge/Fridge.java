@@ -5,39 +5,48 @@ import ru.anutakay.animals.size.Size;
 import ru.anutakay.animals.IAnimal;
 import ru.anutakay.exception.*;
 
-public class Fridge extends Box implements Named {
+public class Fridge extends Box implements Named, Openable {
+
+    Door door = null;
 
     public Fridge(Size size) {
         super(size);
+        door = new Door();
     }
 
     @Override
     public boolean isFull() throws BasicException {
-        if (!isOpened()) {
-            BasicException e = new ClosedDoorException();
-            throw e;
-        }
+        door.checkDoor();
         return super.isFull();
     }
 
     @Override
     public void put(IAnimal object) throws BasicException {
-        if (!isOpened()) {
-            BasicException e = new ClosedDoorException();
-            throw e;
-        }
+        door.checkDoor();
         super.put(object);
     }
 
     @Override
     public IAnimal get() throws BasicException {
-        if (!isOpened()) {
-            BasicException e = new ClosedDoorException();
-            throw e;
-        }
-       return super.get();
+        door.checkDoor();
+        return super.get();
     }
 
+
+    @Override
+    public void open() throws DoorStatusException {
+        door.open();
+    }
+
+    @Override
+    public void close() throws DoorStatusException {
+        door.close();
+    }
+
+    @Override
+    public boolean isOpened() {
+        return door.isOpened();
+    }
 
 
     @Override
