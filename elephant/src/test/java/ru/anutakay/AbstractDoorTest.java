@@ -6,6 +6,7 @@ import ru.anutakay.exception.ClosedDoorException;
 import ru.anutakay.exception.DoorStatusException;
 import ru.anutakay.exception.OpenDoorException;
 import ru.anutakay.fridge.Fridge;
+import ru.anutakay.fridge.Openable;
 
 import static org.testng.Assert.assertFalse;
 import static org.testng.Assert.assertTrue;
@@ -13,20 +14,11 @@ import static org.testng.Assert.assertTrue;
 /**
  * Created by anutakay@gmail.com on 16.02.2016.
  */
-public class DoorFridgeTest extends AbstractTest{
+public abstract class AbstractDoorTest extends AbstractTest{
 
-    Fridge open;
-    Fridge closed;
+    Openable opened = null;
 
-    @BeforeMethod
-    public void before() throws DoorStatusException {
-        open = new Fridge(medium);
-        open.open();
-        closed = new Fridge(medium);
-        if(closed.isOpened()) {
-            closed.close();
-        }
-    }
+    Openable closed = null;
 
     @Test
     public void successOpen() throws DoorStatusException {
@@ -37,14 +29,14 @@ public class DoorFridgeTest extends AbstractTest{
 
     @Test
     public void  successClose() throws DoorStatusException {
-        open.close();
-        boolean res = open.isOpened();
+        opened.close();
+        boolean res = opened.isOpened();
         assertFalse(res);
     }
 
     @Test(expectedExceptions = OpenDoorException.class)
     public void failOpen() throws DoorStatusException {
-        open.open();
+        opened.open();
     }
 
     @Test(expectedExceptions = ClosedDoorException.class)

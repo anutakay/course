@@ -8,7 +8,7 @@ import ru.anutakay.fridge.Fridge;
 /**
  * Created by anutakay@gmail.com on 16.02.2016.
  */
-public class ClosedFridgeTest extends AbstractTest{
+public class FridgeClosedTest extends AbstractTest{
 
     Fridge full = null;
     Fridge empty = null;

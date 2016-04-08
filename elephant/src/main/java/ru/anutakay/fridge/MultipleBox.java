@@ -12,7 +12,7 @@ public interface MultipleBox {
 
     IAnimal get(String key) throws BasicException;
 
-    boolean hasFreeSpace() throws BasicException;
+    boolean hasFreeSpace();
 
     int maxCapacity();
 

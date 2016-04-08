@@ -19,8 +19,6 @@ public abstract class AbstractCheckroomTest extends AbstractTest {
 
     MultipleBox checkroom;
 
-    static final int ONE = 1;
-
     @Test(expectedExceptions = NullPointerException.class)
     public void failCreatingNullSize() {
         MultipleBox cr = new Checkroom(null, ONE);

@@ -5,6 +5,7 @@ import ru.anutakay.animals.size.Size;
 import ru.anutakay.exception.BasicException;
 import ru.anutakay.exception.FullException;
 import ru.anutakay.exception.SizeException;
+import ru.anutakay.exception.UncompatibleValueException;
 
 import java.util.*;
 
@@ -44,6 +45,9 @@ public class SeparateCheckroom extends AbstractFridge implements MultipleBox {
 
     @Override
     public IAnimal get(String key) throws BasicException {
+        if(!animals.containsKey(key)) {
+            throw new UncompatibleValueException();
+        }
         Fridge fridge  = animals.get(key);
         fridge.open();
         IAnimal res = fridge.get();
@@ -53,7 +57,7 @@ public class SeparateCheckroom extends AbstractFridge implements MultipleBox {
     }
 
     @Override
-    public boolean hasFreeSpace() throws BasicException {
+    public boolean hasFreeSpace() {
         return usedCapacity() < maxCapacity();
     }
 
