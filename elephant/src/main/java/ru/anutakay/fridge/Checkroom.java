@@ -60,7 +60,7 @@ public class Checkroom extends AbstractFridge implements MultipleBox {
     }
 
     @Override
-    public boolean hasFreeSpace() throws BasicException {
+    public boolean hasFreeSpace() {
         return maxCapacity() > usedCapacity();
     }
 

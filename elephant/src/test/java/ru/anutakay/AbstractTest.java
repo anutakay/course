@@ -17,6 +17,11 @@ public class AbstractTest {
 
     IAnimal thing;
 
+    static final int CAPACITY = 10;
+    static final int HALF = 5;
+
+    static final int ONE = 1;
+
     @BeforeClass
     public void beforeClass() throws BasicException {
         small = new Size(10, 10, 10, 10);
