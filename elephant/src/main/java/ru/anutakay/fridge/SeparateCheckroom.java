@@ -11,18 +11,20 @@ import java.util.*;
 /**
  * Created by akaygorodova@issart.com on 07.04.2016.
  */
-public class SeparateCheckroom extends AbstractFridge implements MultipleBox {
+public class SeparateCheckroom implements MultipleBox {
 
     private int capacity;
+
+    private Size size;
 
     private Map<String, Fridge> animals = null;
 
     private Set<String> emptyKeys = new HashSet<String>();
 
     public SeparateCheckroom(Size size, int capacity) {
-        super(size);
         animals = new HashMap<String, Fridge>(capacity);
         this.capacity = capacity;
+        this.size = size;
     }
 
     @Override
@@ -70,7 +72,7 @@ public class SeparateCheckroom extends AbstractFridge implements MultipleBox {
         String res;
         if(emptyKeys.isEmpty()) {
             res = UUID.randomUUID().toString();
-            Fridge tmpFridge = new Fridge(this.getSize());
+            Fridge tmpFridge = new Fridge(size);
             animals.put(res, tmpFridge);
         } else {
             res = emptyKeys.iterator().next();

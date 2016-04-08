@@ -13,7 +13,6 @@ public class SeparateCheckroomTest extends AbstractCheckroomTest {
     @BeforeMethod
     public void beforeMethod() throws DoorStatusException {
         SeparateCheckroom tmp = new SeparateCheckroom(medium, ONE);
-        tmp.open();
         checkroom = tmp;
     }
 }
