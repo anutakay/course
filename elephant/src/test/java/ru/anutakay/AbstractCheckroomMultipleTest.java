@@ -75,13 +75,9 @@ public abstract class AbstractCheckroomMultipleTest extends AbstractTest {
             key = checkroom.put(obj);
             keys.put(key, obj);
         }
-        int num = keys.size();
-        String[] arr = new String[keys.keySet().size()];
-        keys.keySet().toArray(arr);
-        for (int i = 0; i < num; i++) {
-            key = arr[i];
-            obj = checkroom.get(key);
-            assertEquals(obj, keys.get(key));
+        for (String i: keys.keySet()) {
+            obj = checkroom.get(i);
+            assertEquals(obj, keys.get(i));
         }
         assertTrue(checkroom.hasFreeSpace());
         assertEquals(checkroom.usedCapacity(), 0);

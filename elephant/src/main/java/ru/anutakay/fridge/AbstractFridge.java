@@ -54,4 +54,9 @@ public class AbstractFridge implements Place, Openable {
     public boolean isFits(IAnimal object) {
         return place.isFits(object);
     }
+
+    @Override
+    public Size getSize() {
+        return this.place.getSize();
+    }
 }

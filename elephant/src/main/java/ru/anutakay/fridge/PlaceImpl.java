@@ -22,4 +22,9 @@ class PlaceImpl implements Place {
         }
         return true;
     }
+
+    @Override
+    public Size getSize() {
+        return size;
+    }
 }
