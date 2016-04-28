@@ -1,13 +1,14 @@
 package ru.anutakay.client;
 
 import ru.anutakay.animals.Animal;
+import ru.anutakay.animals.IAnimal;
 import ru.anutakay.fridge.Fridge;
 import ru.anutakay.exception.*;
 
 public class StrongClient implements Client {
 
     @Override
-    public boolean putToFridge(Fridge fridge, Animal object) throws BasicException {
+    public boolean putToFridge(Fridge<Animal> fridge, Animal object) throws BasicException {
         System.out.println(fridge.getName() + " открыт?");
         boolean isOpen = fridge.isOpened();
         if (isOpen) {
@@ -23,7 +24,7 @@ public class StrongClient implements Client {
         if (isFull) {
             System.out.println("Нет, здесь что-то есть");
             System.out.println("Вытаскиваю что-то из " + fridge.getName());
-            old = (Animal) fridge.get();
+            old = fridge.get();
             System.out.println("Это " + old.getName());
         } else {
             System.out.println("Да, " + fridge.getName() + " пуст.");

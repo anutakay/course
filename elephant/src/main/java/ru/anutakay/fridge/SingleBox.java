@@ -3,11 +3,11 @@ package ru.anutakay.fridge;
 import ru.anutakay.animals.IAnimal;
 import ru.anutakay.exception.*;
 
-public interface SingleBox {
+public interface SingleBox<A extends IAnimal> {
 
-    void put(IAnimal object) throws BasicException;
+    void put(A object) throws BasicException;
 
-    IAnimal get() throws BasicException;
+    A get() throws BasicException;
 
     boolean isFull() throws BasicException;
 

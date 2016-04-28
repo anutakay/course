@@ -9,7 +9,7 @@ import ru.anutakay.exception.DoorStatusException;
 /**
  * Created by akaygorodova@issart.com on 22.03.2016.
  */
-public class AbstractFridge implements Place, Openable {
+public class AbstractFridge<A extends IAnimal> implements Place<A>, Openable {
 
     private Place place = null;
 
@@ -51,7 +51,7 @@ public class AbstractFridge implements Place, Openable {
     }
 
     @Override
-    public boolean isFits(IAnimal object) {
+    public boolean isFits(A object) {
         return place.isFits(object);
     }
 

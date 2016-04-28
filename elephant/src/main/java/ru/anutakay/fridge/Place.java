@@ -6,9 +6,9 @@ import ru.anutakay.animals.size.Size;
 /**
  * Created by akaygorodova@issart.com on 22.03.2016.
  */
-public interface Place {
+public interface Place<A extends IAnimal> {
 
-    boolean isFits(IAnimal object);
+    boolean isFits(A object);
 
     Size getSize();
 }

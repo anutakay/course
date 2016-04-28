@@ -6,11 +6,11 @@ import ru.anutakay.exception.BasicException;
 /**
  * Created by anutakay@gmail.com on 22.03.2016.
  */
-public interface MultipleBox {
+public interface MultipleBox<A extends IAnimal> {
 
-    String put(IAnimal animal) throws BasicException;
+    String put(A animal) throws BasicException;
 
-    IAnimal get(String key) throws BasicException;
+    A get(String key) throws BasicException;
 
     boolean hasFreeSpace();
 

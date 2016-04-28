@@ -5,16 +5,16 @@ import ru.anutakay.animals.size.Size;
 import ru.anutakay.animals.IAnimal;
 import ru.anutakay.exception.*;
 
-public class Fridge extends AbstractFridge implements SingleBox, Named {
+public class Fridge<A extends IAnimal> extends AbstractFridge<A> implements SingleBox<A>, Named {
 
-    private IAnimal object;
+    private A object;
 
     public Fridge(Size size) {
         super(size);
     }
 
     @Override
-    public void put(IAnimal object) throws BasicException {
+    public void put(A object) throws BasicException {
         checkDoor();
         if (object == null) {
             throw new NullPointerException();
@@ -29,13 +29,13 @@ public class Fridge extends AbstractFridge implements SingleBox, Named {
     }
 
     @Override
-    public IAnimal get() throws BasicException {
+    public A get() throws BasicException {
         checkDoor();
         if (!isFull()) {
             BasicException e = new EmptyException();
             throw e;
         }
-        IAnimal result = object;
+        A result = object;
         this.object = null;
         return result;
     }

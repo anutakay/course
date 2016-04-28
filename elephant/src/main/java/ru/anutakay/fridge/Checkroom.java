@@ -9,13 +9,13 @@ import java.util.*;
 /**
  * Created by akaygorodova@issart.com on 22.03.2016.
  */
-public class Checkroom extends AbstractFridge implements MultipleBox {
+public class Checkroom<A extends IAnimal> extends AbstractFridge<A> implements MultipleBox<A> {
 
     private int capacity;
 
     Set<String> emptyCells;
 
-    Map<String, IAnimal> objects;
+    Map<String, A> objects;
 
     public Checkroom(Size size, int capacity) {
         super(size);
@@ -24,11 +24,11 @@ public class Checkroom extends AbstractFridge implements MultipleBox {
         }
         this.capacity = capacity;
         emptyCells = new HashSet<String>();
-        objects = new HashMap<String, IAnimal>();
+        objects = new HashMap<String, A>();
     }
 
     @Override
-    public String put(IAnimal freezable) throws BasicException {
+    public String put(A freezable) throws BasicException {
         checkDoor();
         if(!isFits(freezable)) {
             throw new SizeException();
@@ -43,7 +43,7 @@ public class Checkroom extends AbstractFridge implements MultipleBox {
     }
 
     @Override
-    public IAnimal get(String key) throws BasicException {
+    public A get(String key) throws BasicException {
         checkDoor();
         boolean empty = emptyCells.contains(key);
         if(empty) {
@@ -53,7 +53,7 @@ public class Checkroom extends AbstractFridge implements MultipleBox {
         if(!filled) {
             throw new UncompatibleValueException();
         }
-        IAnimal obj = objects.get(key);
+        A obj = objects.get(key);
         objects.remove(key);
         emptyCells.add(key);
         return obj;

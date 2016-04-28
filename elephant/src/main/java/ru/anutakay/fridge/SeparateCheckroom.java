@@ -11,18 +11,18 @@ import java.util.*;
 /**
  * Created by akaygorodova@issart.com on 07.04.2016.
  */
-public class SeparateCheckroom implements MultipleBox {
+public class SeparateCheckroom<A extends IAnimal> implements MultipleBox<A> {
 
     private int capacity;
 
     private Size size;
 
-    private Map<String, Fridge> animals = null;
+    private Map<String, Fridge> fridges = null;
 
     private Set<String> emptyKeys = new HashSet<String>();
 
     public SeparateCheckroom(Size size, int capacity) {
-        animals = new HashMap<String, Fridge>(capacity);
+        fridges = new HashMap<String, Fridge>(capacity);
         this.capacity = capacity;
         this.size = size;
     }
@@ -33,7 +33,7 @@ public class SeparateCheckroom implements MultipleBox {
             throw new FullException();
         }
         String key = getFirstEmptyCell();
-        Fridge fridge = animals.get(key);
+        Fridge fridge = fridges.get(key);
         fridge.open();
         fridge.put(animal);
         fridge.close();
@@ -41,13 +41,13 @@ public class SeparateCheckroom implements MultipleBox {
     }
 
     @Override
-    public IAnimal get(String key) throws BasicException {
-        if(!animals.containsKey(key)) {
+    public A get(String key) throws BasicException {
+        if(!fridges.containsKey(key)) {
             throw new UncompatibleValueException();
         }
-        Fridge fridge  = animals.get(key);
+        Fridge<A> fridge  = fridges.get(key);
         fridge.open();
-        IAnimal res = fridge.get();
+        A res = fridge.get();
         fridge.close();
         emptyKeys.add(key);
         return res;
@@ -65,15 +65,15 @@ public class SeparateCheckroom implements MultipleBox {
 
     @Override
     public int usedCapacity() {
-        return animals.size() - emptyKeys.size();
+        return fridges.size() - emptyKeys.size();
     }
 
     private String getFirstEmptyCell() {
         String res;
         if(emptyKeys.isEmpty()) {
             res = UUID.randomUUID().toString();
-            Fridge tmpFridge = new Fridge(size);
-            animals.put(res, tmpFridge);
+            Fridge<A> tmpFridge = new Fridge<A>(size);
+            fridges.put(res, tmpFridge);
         } else {
             res = emptyKeys.iterator().next();
             emptyKeys.remove(res);
