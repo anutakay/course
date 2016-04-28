@@ -14,8 +14,8 @@ import ru.anutakay.fridge.MultipleBox;
  */
 public class CheckroomClosedTest extends AbstractTest{
 
-    MultipleBox full = null;
-    MultipleBox empty = null;
+    MultipleBox full;
+    MultipleBox empty;
 
     String key;
 

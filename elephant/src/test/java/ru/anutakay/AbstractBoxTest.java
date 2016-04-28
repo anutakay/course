@@ -4,10 +4,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.anutakay.animals.IAnimal;
 import ru.anutakay.animals.Animal;
-import ru.anutakay.exception.BasicException;
-import ru.anutakay.exception.EmptyException;
-import ru.anutakay.exception.FullException;
-import ru.anutakay.exception.SizeException;
+import ru.anutakay.exception.*;
 import ru.anutakay.fridge.Fridge;
 
 import static org.junit.Assert.assertNotNull;
@@ -20,11 +17,19 @@ import static org.testng.Assert.assertTrue;
  */
 public abstract class AbstractBoxTest extends AbstractTest {
 
-    Fridge empty = null;
-    Fridge full = null;
+    private Fridge empty;
+
+    private Fridge full;
+
+    public abstract Fridge getEmpty() throws DoorStatusException;
+
+    public abstract Fridge getFull() throws BasicException;
 
     @BeforeMethod
-    public abstract void  beforeMethod() throws BasicException;
+    public final void  beforeMethod() throws BasicException {
+        empty = getEmpty();
+        full = getFull();
+    }
 
     @Test
     public void successPut() throws BasicException {

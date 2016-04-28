@@ -1,8 +1,7 @@
 package ru.anutakay;
 
-import org.testng.annotations.BeforeMethod;
-import ru.anutakay.exception.DoorStatusException;
-import ru.anutakay.fridge.Checkroom;
+import ru.anutakay.exception.BasicException;
+import ru.anutakay.fridge.MultipleBox;
 import ru.anutakay.fridge.SeparateCheckroom;
 
 /**
@@ -10,9 +9,8 @@ import ru.anutakay.fridge.SeparateCheckroom;
  */
 public class SeparateCheckroomTest extends AbstractCheckroomTest {
 
-    @BeforeMethod
-    public void beforeMethod() throws DoorStatusException {
-        SeparateCheckroom tmp = new SeparateCheckroom(medium, ONE);
-        checkroom = tmp;
+    @Override
+    public MultipleBox getCheckroom() throws BasicException {
+        return new SeparateCheckroom(medium, ONE);
     }
 }

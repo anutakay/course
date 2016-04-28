@@ -6,6 +6,7 @@ import ru.anutakay.animals.IAnimal;
 import ru.anutakay.animals.Animal;
 import ru.anutakay.exception.*;
 import ru.anutakay.fridge.Checkroom;
+import ru.anutakay.fridge.Fridge;
 import ru.anutakay.fridge.MultipleBox;
 
 import java.util.HashMap;
@@ -20,7 +21,14 @@ import static org.testng.Assert.*;
  */
 public abstract class AbstractCheckroomMultipleTest extends AbstractTest {
 
-    MultipleBox checkroom = null;
+    private MultipleBox checkroom;
+
+    public abstract MultipleBox getCheckroom() throws BasicException;
+
+    @BeforeMethod
+    public final void  beforeMethod() throws BasicException {
+        checkroom = getCheckroom();
+    }
 
     @Test
     public void afterCreating() throws BasicException {
@@ -32,9 +40,9 @@ public abstract class AbstractCheckroomMultipleTest extends AbstractTest {
 
     @Test
     public void successPut() throws BasicException {
-        IAnimal obj = null;
+        IAnimal obj;
         Set<String> keys = new HashSet<String>();
-        String key = null;
+        String key;
         for(int i = 0; i < CAPACITY; i++) {
             assertTrue(checkroom.hasFreeSpace());
             obj = new Animal(medium);
@@ -48,9 +56,9 @@ public abstract class AbstractCheckroomMultipleTest extends AbstractTest {
 
     @Test
     public void successPutAfterGet() throws BasicException {
-        IAnimal obj = null;
+        IAnimal obj;
         Set<String> keys = new HashSet<String>();
-        String key = null;
+        String key;
         key = checkroom.put(thing);
         keys.add(key);
         checkroom.get(key);
@@ -67,9 +75,9 @@ public abstract class AbstractCheckroomMultipleTest extends AbstractTest {
 
     @Test
     public void successPutAndGet() throws BasicException {
-        IAnimal obj = null;
+        IAnimal obj;
         Map<String, IAnimal> keys = new HashMap<String, IAnimal>();
-        String key = null;
+        String key;
         for(int i = 0; i < CAPACITY; i++) {
             obj = new Animal(medium);
             key = checkroom.put(obj);
@@ -86,9 +94,9 @@ public abstract class AbstractCheckroomMultipleTest extends AbstractTest {
 
     @Test
     public void successPutHalf() throws BasicException {
-        IAnimal obj = null;
+        IAnimal obj;
         Set<String> keys = new HashSet<String>();
-        String key = null;
+        String key;
         for(int i = 0; i < HALF; i++) {
             obj = new Animal(medium);
             key = checkroom.put(obj);
@@ -102,9 +110,9 @@ public abstract class AbstractCheckroomMultipleTest extends AbstractTest {
 
     @Test(expectedExceptions = FullException.class)
     public void failPutFull() throws BasicException {
-        IAnimal obj = null;
+        IAnimal obj;
         Set<String> keys = new HashSet<String>();
-        String key = null;
+        String key;
         for(int i = 0; i < CAPACITY + 1; i++) {
             obj = new Animal(medium);
             key = checkroom.put(obj);

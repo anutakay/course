@@ -2,6 +2,7 @@ package ru.anutakay;
 
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import ru.anutakay.exception.BasicException;
 import ru.anutakay.exception.ClosedDoorException;
 import ru.anutakay.exception.DoorStatusException;
 import ru.anutakay.exception.OpenDoorException;
@@ -16,9 +17,19 @@ import static org.testng.Assert.assertTrue;
  */
 public abstract class AbstractDoorTest extends AbstractTest{
 
-    Openable opened = null;
+    private Openable opened;
 
-    Openable closed = null;
+    private Openable closed;
+
+    public abstract Openable getOpened() throws DoorStatusException;
+
+    public abstract Openable getClosed() throws BasicException;
+
+    @BeforeMethod
+    public final void  beforeMethod() throws BasicException {
+        opened = getOpened();
+        closed = getClosed();
+    }
 
     @Test
     public void successOpen() throws DoorStatusException {

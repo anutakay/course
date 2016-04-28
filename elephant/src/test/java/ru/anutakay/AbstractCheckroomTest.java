@@ -1,5 +1,6 @@
 package ru.anutakay;
 
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.anutakay.animals.Animal;
 import ru.anutakay.animals.IAnimal;
@@ -17,7 +18,14 @@ import static org.testng.Assert.assertEquals;
  */
 public abstract class AbstractCheckroomTest extends AbstractTest {
 
-    MultipleBox checkroom;
+    private MultipleBox checkroom;
+
+    public abstract MultipleBox getCheckroom() throws BasicException;
+
+    @BeforeMethod
+    public final void  beforeMethod() throws BasicException {
+        checkroom = getCheckroom();
+    }
 
     @Test(expectedExceptions = NullPointerException.class)
     public void failCreatingNullSize() {
