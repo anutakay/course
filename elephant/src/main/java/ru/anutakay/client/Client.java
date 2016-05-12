@@ -5,5 +5,5 @@ import ru.anutakay.fridge.Fridge;
 import ru.anutakay.exception.*;
 
 public interface Client {
-    boolean putToFridge(Fridge fridge, Animal object) throws BasicException;
+    boolean putToFridge(Fridge<Animal> fridge, Animal object) throws BasicException;
 }

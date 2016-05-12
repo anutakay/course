@@ -1,9 +1,8 @@
 package ru.anutakay.animals.size;
 
-import ru.anutakay.exception.UncompatibleClassException;
 import ru.anutakay.exception.UncompatibleValueException;
 
-public class Size implements BaseSize {
+public class Size implements ISize<Size> {
 
     private int length;
     private int width;
@@ -28,24 +27,10 @@ public class Size implements BaseSize {
     }
 
     @Override
-    public boolean greaterThan(BaseSize size) {
-        if(size.getClass() != Size.class) {
-            throw new UncompatibleClassException();
-        }
-        Size tmp = (Size) size;
-        if (this.length > tmp.length) {
-            return true;
-        }
-        if (this.width > tmp.width) {
-            return true;
-        }
-        if (this.height > tmp.height) {
-            return true;
-        }
-        if (this.weight.greaterThan(tmp.weight)) {
-            return true;
-        }
-        return false;
+    public boolean greaterThan(Size size) {
+
+        return this.length > size.length || this.width > size.width
+                || this.height > size.height || this.weight.greaterThan(size.weight);
     }
 
     @Override

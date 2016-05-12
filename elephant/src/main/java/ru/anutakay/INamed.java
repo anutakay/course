@@ -1,5 +1,5 @@
 package ru.anutakay;
 
-public interface Named {
+public interface INamed {
     String getName();
 }

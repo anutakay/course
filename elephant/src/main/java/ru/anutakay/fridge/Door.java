@@ -1,6 +1,5 @@
 package ru.anutakay.fridge;
 
-import ru.anutakay.exception.BasicException;
 import ru.anutakay.exception.ClosedDoorException;
 import ru.anutakay.exception.DoorStatusException;
 import ru.anutakay.exception.OpenDoorException;
@@ -8,7 +7,7 @@ import ru.anutakay.exception.OpenDoorException;
 /**
  * Created by akaygorodova@issart.com on 04.04.2016.
  */
-class Door implements Openable {
+class Door implements IOpenable {
 
     public boolean isOpened = false;
 

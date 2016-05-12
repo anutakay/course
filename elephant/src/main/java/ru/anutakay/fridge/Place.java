@@ -4,11 +4,23 @@ import ru.anutakay.animals.IAnimal;
 import ru.anutakay.animals.size.Size;
 
 /**
- * Created by akaygorodova@issart.com on 22.03.2016.
+ * Created by akaygorodova@issart.com on 04.04.2016.
  */
-public interface Place {
+class Place implements IPlace {
 
-    boolean isFits(IAnimal object);
+    private Size size;
 
-    Size getSize();
+    public Place(Size size) {
+        this.size = size;
+    }
+
+    @Override
+    public final boolean isFits(IAnimal object) {
+       return !object.getSize().greaterThan(size);
+    }
+
+    @Override
+    public Size getSize() {
+        return size;
+    }
 }

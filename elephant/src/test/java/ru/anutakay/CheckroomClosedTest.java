@@ -2,20 +2,18 @@ package ru.anutakay;
 
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import ru.anutakay.animals.IAnimal;
 import ru.anutakay.exception.BasicException;
 import ru.anutakay.exception.ClosedDoorException;
 import ru.anutakay.fridge.Checkroom;
-import ru.anutakay.fridge.Fridge;
-import ru.anutakay.fridge.MultipleBox;
+import ru.anutakay.fridge.IMultipleBox;
 
 /**
  * Created by anutakay@gmail.com on 16.02.2016.
  */
 public class CheckroomClosedTest extends AbstractTest{
 
-    MultipleBox full = null;
-    MultipleBox empty = null;
+    IMultipleBox full;
+    IMultipleBox empty;
 
     String key;
 

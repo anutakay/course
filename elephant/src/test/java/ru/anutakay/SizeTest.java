@@ -2,10 +2,8 @@ package ru.anutakay;
 
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-import ru.anutakay.animals.size.BaseSize;
 import ru.anutakay.animals.size.Size;
 import ru.anutakay.exception.BasicException;
-import ru.anutakay.exception.UncompatibleClassException;
 import ru.anutakay.exception.UncompatibleValueException;
 
 import static org.testng.Assert.assertFalse;
@@ -77,17 +75,6 @@ public class SizeTest {
     public void successCompareBigWeight() {
         boolean res = bigWeight.greaterThan(mediumSize);
         assertTrue(res);
-    }
-
-    @Test(expectedExceptions = UncompatibleClassException.class)
-    public void failCompareClass() {
-        BaseSize size = new BaseSize() {
-            @Override
-            public boolean greaterThan(BaseSize size) {
-                return false;
-            }
-        };
-        mediumSize.greaterThan(size);
     }
 
     @Test(expectedExceptions = NullPointerException.class)

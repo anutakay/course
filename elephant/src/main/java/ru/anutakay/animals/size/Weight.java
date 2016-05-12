@@ -2,7 +2,7 @@ package ru.anutakay.animals.size;
 
 import ru.anutakay.exception.UncompatibleValueException;
 
-public class Weight implements BaseSize {
+public class Weight implements ISize<Weight> {
 
     private int value;
 
@@ -14,12 +14,8 @@ public class Weight implements BaseSize {
     }
 
     @Override
-    public boolean greaterThan(BaseSize size) {
-        Weight tmp = (Weight) size;
-        if (this.value > tmp.value) {
-            return true;
-        }
-        return false;
+    public boolean greaterThan(Weight size) {
+        return this.value > size.value;
     }
 
     @Override

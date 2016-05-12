@@ -1,11 +1,12 @@
 package ru.anutakay;
 
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.anutakay.animals.Animal;
 import ru.anutakay.animals.IAnimal;
 import ru.anutakay.exception.*;
 import ru.anutakay.fridge.Checkroom;
-import ru.anutakay.fridge.MultipleBox;
+import ru.anutakay.fridge.IMultipleBox;
 
 import java.util.UUID;
 
@@ -17,16 +18,23 @@ import static org.testng.Assert.assertEquals;
  */
 public abstract class AbstractCheckroomTest extends AbstractTest {
 
-    MultipleBox checkroom;
+    private IMultipleBox checkroom;
+
+    public abstract IMultipleBox getCheckroom() throws BasicException;
+
+    @BeforeMethod
+    public final void  beforeMethod() throws BasicException {
+        checkroom = getCheckroom();
+    }
 
     @Test(expectedExceptions = NullPointerException.class)
     public void failCreatingNullSize() {
-        MultipleBox cr = new Checkroom(null, ONE);
+        IMultipleBox cr = new Checkroom(null, ONE);
     }
 
     @Test(expectedExceptions = UncompatibleValueException.class)
     public void failCreatingBadCapacity() {
-        MultipleBox cr = new Checkroom(medium, 0);
+        IMultipleBox cr = new Checkroom(medium, 0);
     }
 
     @Test
