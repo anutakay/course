@@ -66,4 +66,10 @@ public class EMailMatcherTest {
         boolean res = emailMatcher.matches(str);
         assertFalse(res);
     }
+
+    @Test(dataProvider = "validEmailDataProvider")
+    public void find(String str) {
+        String res = emailMatcher.find(str);
+        System.out.println(res);
+    }
 }
