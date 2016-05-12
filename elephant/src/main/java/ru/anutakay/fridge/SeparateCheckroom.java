@@ -11,13 +11,13 @@ import java.util.*;
 /**
  * Created by akaygorodova@issart.com on 07.04.2016.
  */
-public class SeparateCheckroom<A extends IAnimal> implements MultipleBox<A> {
+public class SeparateCheckroom<A extends IAnimal> implements IMultipleBox<A> {
 
     private int capacity;
 
     private Size size;
 
-    private Map<String, Fridge> fridges = null;
+    private Map<String, Fridge> fridges;
 
     private Set<String> emptyKeys = new HashSet<String>();
 

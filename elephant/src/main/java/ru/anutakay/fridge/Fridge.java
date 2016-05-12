@@ -1,11 +1,11 @@
 package ru.anutakay.fridge;
 
-import ru.anutakay.Named;
+import ru.anutakay.INamed;
 import ru.anutakay.animals.size.Size;
 import ru.anutakay.animals.IAnimal;
 import ru.anutakay.exception.*;
 
-public class Fridge<A extends IAnimal> extends AbstractFridge<A> implements SingleBox<A>, Named {
+public class Fridge<A extends IAnimal> extends AbstractFridge<A> implements ISingleBox<A>, INamed {
 
     private A object;
 
@@ -32,8 +32,7 @@ public class Fridge<A extends IAnimal> extends AbstractFridge<A> implements Sing
     public A get() throws BasicException {
         checkDoor();
         if (!isFull()) {
-            BasicException e = new EmptyException();
-            throw e;
+            throw new EmptyException();
         }
         A result = object;
         this.object = null;
@@ -44,11 +43,7 @@ public class Fridge<A extends IAnimal> extends AbstractFridge<A> implements Sing
     @Override
     public boolean isFull() throws BasicException {
         checkDoor();
-        if (object == null) {
-            return false;
-        } else {
-            return true;
-        }
+        return object != null;
     }
 
     @Override

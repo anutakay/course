@@ -2,7 +2,7 @@ package ru.anutakay;
 
 import ru.anutakay.exception.BasicException;
 import ru.anutakay.fridge.Checkroom;
-import ru.anutakay.fridge.MultipleBox;
+import ru.anutakay.fridge.IMultipleBox;
 
 /**
  * Created by akaygorodova@issart.com on 08.04.2016.
@@ -10,7 +10,7 @@ import ru.anutakay.fridge.MultipleBox;
 public class CheckroomMultipleTest extends AbstractCheckroomMultipleTest {
 
     @Override
-    public MultipleBox getCheckroom() throws BasicException {
+    public IMultipleBox getCheckroom() throws BasicException {
         Checkroom tmp  = new Checkroom(medium, CAPACITY);
         tmp.open();
         return tmp;

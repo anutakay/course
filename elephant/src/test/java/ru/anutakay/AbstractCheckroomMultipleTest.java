@@ -5,9 +5,7 @@ import org.testng.annotations.Test;
 import ru.anutakay.animals.IAnimal;
 import ru.anutakay.animals.Animal;
 import ru.anutakay.exception.*;
-import ru.anutakay.fridge.Checkroom;
-import ru.anutakay.fridge.Fridge;
-import ru.anutakay.fridge.MultipleBox;
+import ru.anutakay.fridge.IMultipleBox;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -21,9 +19,9 @@ import static org.testng.Assert.*;
  */
 public abstract class AbstractCheckroomMultipleTest extends AbstractTest {
 
-    private MultipleBox checkroom;
+    private IMultipleBox checkroom;
 
-    public abstract MultipleBox getCheckroom() throws BasicException;
+    public abstract IMultipleBox getCheckroom() throws BasicException;
 
     @BeforeMethod
     public final void  beforeMethod() throws BasicException {

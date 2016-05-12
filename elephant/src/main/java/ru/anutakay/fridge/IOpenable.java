@@ -2,7 +2,7 @@ package ru.anutakay.fridge;
 
 import ru.anutakay.exception.DoorStatusException;
 
-public interface Openable {
+public interface IOpenable {
 
     void open() throws DoorStatusException;
 

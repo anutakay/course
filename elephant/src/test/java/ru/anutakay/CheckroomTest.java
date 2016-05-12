@@ -1,7 +1,7 @@
 package ru.anutakay;
 
 import ru.anutakay.exception.*;
-import ru.anutakay.fridge.MultipleBox;
+import ru.anutakay.fridge.IMultipleBox;
 import ru.anutakay.fridge.SeparateCheckroom;
 
 /**
@@ -10,7 +10,7 @@ import ru.anutakay.fridge.SeparateCheckroom;
 public class CheckroomTest extends AbstractCheckroomTest {
 
     @Override
-    public MultipleBox getCheckroom() throws BasicException {
+    public IMultipleBox getCheckroom() throws BasicException {
         return new SeparateCheckroom(medium, ONE);
     }
 }

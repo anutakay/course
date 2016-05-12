@@ -6,7 +6,7 @@ import ru.anutakay.exception.BasicException;
 /**
  * Created by anutakay@gmail.com on 22.03.2016.
  */
-public interface MultipleBox<A extends IAnimal> {
+public interface IMultipleBox<A extends IAnimal> {
 
     String put(A animal) throws BasicException;
 

@@ -9,17 +9,17 @@ import ru.anutakay.exception.DoorStatusException;
 /**
  * Created by akaygorodova@issart.com on 22.03.2016.
  */
-public class AbstractFridge<A extends IAnimal> implements Place<A>, Openable {
+public class AbstractFridge<A extends IAnimal> implements IPlace<A>, IOpenable {
 
-    private Place place = null;
+    private IPlace place;
 
-    private Door door = null;
+    private Door door;
 
     public AbstractFridge(Size size) {
         if (size == null) {
             throw new NullPointerException();
         }
-        place = new PlaceImpl(size);
+        place = new Place(size);
         door = new Door();
     }
 
@@ -40,8 +40,7 @@ public class AbstractFridge<A extends IAnimal> implements Place<A>, Openable {
 
     protected void checkDoor() throws BasicException {
         if (!isOpened()) {
-            BasicException e = new ClosedDoorException();
-            throw e;
+            throw new ClosedDoorException();
         }
     }
 
@@ -57,6 +56,6 @@ public class AbstractFridge<A extends IAnimal> implements Place<A>, Openable {
 
     @Override
     public Size getSize() {
-        return this.place.getSize();
+        return place.getSize();
     }
 }

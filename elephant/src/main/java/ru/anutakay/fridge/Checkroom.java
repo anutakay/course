@@ -9,7 +9,7 @@ import java.util.*;
 /**
  * Created by akaygorodova@issart.com on 22.03.2016.
  */
-public class Checkroom<A extends IAnimal> extends AbstractFridge<A> implements MultipleBox<A> {
+public class Checkroom<A extends IAnimal> extends AbstractFridge<A> implements IMultipleBox<A> {
 
     private int capacity;
 

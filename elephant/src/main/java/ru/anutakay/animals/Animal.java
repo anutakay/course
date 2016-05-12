@@ -1,9 +1,9 @@
 package ru.anutakay.animals;
 
-import ru.anutakay.Named;
+import ru.anutakay.INamed;
 import ru.anutakay.animals.size.Size;
 
-public class Animal implements IAnimal, Named {
+public class Animal implements IAnimal, INamed {
 
     private Size size;
 

@@ -6,8 +6,7 @@ import ru.anutakay.exception.BasicException;
 import ru.anutakay.exception.ClosedDoorException;
 import ru.anutakay.exception.DoorStatusException;
 import ru.anutakay.exception.OpenDoorException;
-import ru.anutakay.fridge.Fridge;
-import ru.anutakay.fridge.Openable;
+import ru.anutakay.fridge.IOpenable;
 
 import static org.testng.Assert.assertFalse;
 import static org.testng.Assert.assertTrue;
@@ -17,13 +16,13 @@ import static org.testng.Assert.assertTrue;
  */
 public abstract class AbstractDoorTest extends AbstractTest{
 
-    private Openable opened;
+    private IOpenable opened;
 
-    private Openable closed;
+    private IOpenable closed;
 
-    public abstract Openable getOpened() throws DoorStatusException;
+    public abstract IOpenable getOpened() throws DoorStatusException;
 
-    public abstract Openable getClosed() throws BasicException;
+    public abstract IOpenable getClosed() throws BasicException;
 
     @BeforeMethod
     public final void  beforeMethod() throws BasicException {
