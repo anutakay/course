@@ -1,6 +1,5 @@
 package ru.anutakay;
 
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
@@ -13,11 +12,6 @@ import static org.testng.Assert.assertTrue;
 public class EMailMatcherTest {
 
     EmailMatcher emailMatcher;
-
-    @BeforeMethod
-    public void create() {
-        emailMatcher = new EmailMatcher();
-    }
 
     @DataProvider(name = "validEmailDataProvider")
     public Object[][] simpleDataProvider() {
@@ -57,19 +51,22 @@ public class EMailMatcherTest {
 
     @Test(dataProvider = "validEmailDataProvider")
     public void success(String str) {
-        boolean res = emailMatcher.matches(str);
+        emailMatcher = new EmailMatcher(str);
+        boolean res = emailMatcher.isEmail();
         assertTrue(res);
     }
 
     @Test(dataProvider = "invalidEmailDataProvider")
     public void fail(String str) {
-        boolean res = emailMatcher.matches(str);
+        emailMatcher = new EmailMatcher(str);
+        boolean res = emailMatcher.isEmail();
         assertFalse(res);
     }
 
     @Test(dataProvider = "validEmailDataProvider")
     public void find(String str) {
-        String res = emailMatcher.find(str);
-        System.out.println(res);
+        emailMatcher = new EmailMatcher(str);
+        boolean res = emailMatcher.find();
+        assertTrue(res);
     }
 }

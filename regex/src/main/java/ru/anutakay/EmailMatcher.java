@@ -8,20 +8,35 @@ import java.util.regex.Pattern;
  */
 public class EmailMatcher {
 
-    String patternString = "(([0-9a-zA-Z][a-zA-Z0-9\\-'_\\+]*\\.?)+[a-zA-Z0-9][a-zA-Z0-9\\-'_\\+]*@[a-zA-Z0-9][[a-zA-Z0-9\\-]*\\.[a-zA-Z0-9]]*\\.[a-zA-Z]{2,})";
+    final static String patternString = "(([0-9a-zA-Z][a-zA-Z0-9\\-'_\\+]*\\.?)+[a-zA-Z0-9][a-zA-Z0-9\\-'_\\+]*@([a-zA-Z0-9][a-zA-Z0-9\\-]*\\.)+[a-zA-Z]{2,})";
 
-    public boolean matches(String str) {
+    String source;
+
+    Matcher matcher;
+
+    EmailMatcher(String source) {
+        this.source = source;
+        Pattern pattern = Pattern.compile(patternString);
+        matcher = pattern.matcher(source);
+    }
+
+    public boolean isEmail() {
         Pattern pattern = Pattern.compile("^" + patternString + "$");
-        Matcher matcher = pattern.matcher(str);
+        matcher = pattern.matcher(source);
         return matcher.matches();
     }
 
-    public String find(String str) {
-        Pattern pattern = Pattern.compile(patternString);
-        Matcher matcher = pattern.matcher(str);
-        if(matcher.find()) {
-            return matcher.group(1);
-        } else
-            return null;
+    public boolean find() {
+        return matcher.find();
+    }
+
+    public String email() {
+        String email;
+        try {
+            email = matcher.group(1);
+        } catch (IllegalStateException e) {
+            throw new IllegalStateException("No email found");
+        }
+        return email;
     }
 }
