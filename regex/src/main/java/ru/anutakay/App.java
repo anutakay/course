@@ -1,5 +1,9 @@
 package ru.anutakay;
 
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
+
 /**
  * Hello world!
  *
@@ -12,12 +16,16 @@ public class App {
                 "What I crokodile@yahoo.com found out .askold@port-artur.com was surprising. Nearly 100% of regular expressions on the web purporting to validate imyapolzovatelya@aol.com an email address are too strict.\n" +
                 "It turns ivan-100@issart.com out that the local part of an email address tra-ta-ta.100@google.com, the part before the @ sign, allows pipets.100@kiev.com.ua a lot more characters than you’d expect. According to section zayats12345@@.com.com of RFC 2821 which defines SMTP gmail@gmail.com@gmail.com, the part before the @ sign is called the local part (the part after being the host domain john.smith(comment)@example.com) and it is only intended to be interpreted by the receiving host short@1.com.";
         EmailFinder finder = new EmailFinder(source);
-        String[] result = finder.findEmails();
         EmailFinder finder2 = new EmailFinder(source);
+        String[] result = finder.findEmails();
         String[] result2 = finder2.findEmails2();
-        for (int i = 0; i < result.length; i++) {
-            System.out.println(result[i] + "\t" + result2[i]);
-            assert(result[i].equals(result2[i]));
+        Set<String> set1 = new HashSet<String>(Arrays.asList(result));
+        Set<String> set2 = new HashSet<String>(Arrays.asList(result2));
+        Set<String> all = new HashSet<String>();
+        all.addAll(set1);
+        all.addAll(set2);
+        for (String str: all) {
+            System.out.format("%40s\t%b\t%b\n", str, set1.contains(str), set2.contains(str));
         }
     }
 }
