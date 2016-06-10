@@ -10,15 +10,14 @@ import java.util.regex.Pattern;
  */
 public class EmailFinder {
 
-    private String source;
 
     private Pattern pattern = Pattern.compile("(^|[\\?!\\s,;:])([^,\\s;:\\?!]+@[^;,\\?!\\s\\(\\)\\[\\]]+[^;,\\?!\\s\\.\\(\\)\\[\\]]+)\\.?([,;\\?!|\\s\\(\\)\\[\\]]|$)");
 
-    public EmailFinder(String input) {
-        source = input;
+    public EmailFinder() {
+
     }
 
-    public String[] findEmails() {
+    public String[] findEmailByCandidate(String source) {
 
         Matcher matcher = pattern.matcher(source);
 
@@ -36,7 +35,7 @@ public class EmailFinder {
         return result.toArray(res);
     }
 
-    public String[] findEmails2() {
+    public String[] findEmails2(String source) {
 
         EmailMatcher emailMatcher = new EmailMatcher(source);
 
