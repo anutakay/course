@@ -26,7 +26,7 @@ public class EmailFinder {
 
         while (matcher.find()) {
             String candidate = matcher.group(2);
-            EmailMatcher emailMatcher = new EmailMatcher(candidate);
+            EmailValidator emailMatcher = new EmailValidator(candidate);
             boolean isFound = emailMatcher.isEmail();
             if (isFound) {
                 result.add(emailMatcher.email());

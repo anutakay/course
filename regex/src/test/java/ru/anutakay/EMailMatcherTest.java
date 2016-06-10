@@ -51,15 +51,15 @@ public class EMailMatcherTest {
 
     @Test(dataProvider = "validEmailDataProvider")
     public void success(String str) {
-        emailMatcher = new EmailMatcher(str);
-        boolean res = emailMatcher.isEmail();
+        EmailValidator emailValidator = new EmailValidator(str);
+        boolean res = emailValidator.isEmail();
         assertTrue(res);
     }
 
     @Test(dataProvider = "invalidEmailDataProvider")
     public void fail(String str) {
-        emailMatcher = new EmailMatcher(str);
-        boolean res = emailMatcher.isEmail();
+        EmailValidator emailValidator = new EmailValidator(str);
+        boolean res = emailValidator.isEmail();
         assertFalse(res);
     }
 
