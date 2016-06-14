@@ -8,6 +8,7 @@
     <packaging>jar</packaging>
 
     <name>file-reading-exercise</name>
+    <url>https://github.com/anutakay/course</url>
 
     <dependencies>
         <dependency>
@@ -23,7 +24,7 @@
         </dependency>
         <dependency>
             <groupId>ru.anutakay</groupId>
-            <artifactId>regex-email-execution</artifactId>
+            <artifactId>regex-email-exercise</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
     </dependencies>

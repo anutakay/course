@@ -3,12 +3,12 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>ru.anutakay</groupId>
-  <artifactId>regex-email-execution</artifactId>
+  <artifactId>regex-email-exercise</artifactId>
   <version>1.0-SNAPSHOT</version>
   <packaging>jar</packaging>
 
-  <name>regex-email-execution</name>
-  <url>http://maven.apache.org</url>
+  <name>regex-email-exercise</name>
+  <url>https://github.com/anutakay/course</url>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
